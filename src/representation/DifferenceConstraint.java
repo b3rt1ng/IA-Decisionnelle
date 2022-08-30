@@ -21,7 +21,7 @@ public class DifferenceConstraint implements Constraint {
     }
 
     public boolean isSatisfiedBy(Map<Variable, Object> instance) {
-        return false;
+        
     }
 
 }
