@@ -4,5 +4,5 @@ import java.util.*;
 
 public interface Constraint {
     public Set<Variable> getScope();
-    public Boolean isSatisfiedBy();
+    public boolean isSatisfiedBy(Map<Variable, Object> instance);
 }
