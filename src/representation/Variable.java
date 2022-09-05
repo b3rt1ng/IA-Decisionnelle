@@ -26,25 +26,17 @@ public class Variable
         return false;
     }
 
-    //Attention taille int
-    
-    public int hashcode()
+    @Override
+    public int hashCode()
     {
-        if(this.name == null)
-            return 0;
-        
-        int hash = 0;
-        for(int i=1 ; i<= this.name.length() ; i++)
-            hash += Math.pow((int)(this.name.charAt(i-1)), i);
-        
-        return hash;
+        return this.name.hashCode();
     }
 
     @Override
     public String toString()
     {
         String res = this.name + " :";
-        res += "\n" + "hashcode:" + this.hashcode();
+        res += "\n" + "hashcode:" + this.hashCode();
 
         return res;
     }
