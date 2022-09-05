@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Variable
 {
-    private String name;
-    private Set<Object> domaine;
+    protected String name;
+    protected Set<Object> domaine;
 
     public Variable(String name, Set<Object> domaine)
     {

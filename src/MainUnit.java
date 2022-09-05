@@ -1,12 +1,12 @@
-package unit;
+import unit.representation.*;
 
 public class MainUnit
 {
     public MainUnit()
     {
-        TestVariable testVariable = new testVariable();
+        System.out.println(TestVariable.allTests() ? " All tests OK " : " At least one test KO " );
         System.out.println("");
-        //TestBooleanVariable TestBooleanVariable = new TestBooleanVariable();
+        //System.out.println(TestVariable.allTests() ? " All tests OK " : " At least one test KO " );
     }
 
     public static void main(String[] args) 
