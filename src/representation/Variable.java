@@ -5,16 +5,16 @@ import java.util.*;
 public class Variable
 {
     protected String name;
-    protected Set<Object> domaine;
+    protected Set<Object> domain;
 
-    public Variable(String name, Set<Object> domaine)
+    public Variable(String name, Set<Object> domain)
     {
         this.name = name;
-        this.domaine = domaine;
+        this.domain = domain;
     }
 
     public String getName() { return this.name; }
-    public Set<Object> getDomaine() { return this.domaine; }
+    public Set<Object> getDomain() { return this.domain; }
 
     @Override
     public boolean equals(Object o)

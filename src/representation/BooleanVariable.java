@@ -1,3 +1,5 @@
+package representation;
+
 import java.util.HashSet;
 
 public class BooleanVariable extends Variable
@@ -6,7 +8,7 @@ public class BooleanVariable extends Variable
     {
         super(name, new HashSet<Object>());
         
-        super.domaine.add(true);
-        super.domaine.add(false);
+        this.domain.add(true);
+        this.domain.add(false);
     }
 }

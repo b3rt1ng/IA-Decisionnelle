@@ -1,10 +1,10 @@
 #!/bin/bash
 
 cd src
-javac -cp ".:../lib/tests.jar" -d ../bin representation/Variable.java
-#javac -cp ".:../lib/*.jar" -d ../bin representation/BooleanVariable.java
-javac -cp ".:../lib/tests.jar" -d ../bin unit/representation/*.java
-javac -cp ".:../lib/tests.jar" -d ../bin MainUnit.java
+javac -cp ".:../lib/tests.jar:../bin/" -d ../bin representation/Variable.java
+javac -cp ".:../lib/tests.jar:../bin/representation/Variable" -d ../bin representation/BooleanVariable.java
+javac -cp ".:../lib/tests.jar:../bin/" -d ../bin unit/representation/*.java
+javac -cp ".:../lib/tests.jar:../bin/" -d ../bin MainUnit.java
 
 #cd bin
 #java -cp ".:../lib/tests.jar" Main
