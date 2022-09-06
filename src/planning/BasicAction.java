@@ -44,6 +44,6 @@ public class BasicAction implements Action
     @Override
     public int getCost() 
     {
-        return 0;
+        return this.cost;
     }
 }
