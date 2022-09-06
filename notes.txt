@@ -1,1 +1,4 @@
+- bien penser à commenter les methodes pas très claires 
+    pour aider pour le fil rouge plus tard. (En gros faire la javadoc)
+
 - Faire interface "isTestable" ?
