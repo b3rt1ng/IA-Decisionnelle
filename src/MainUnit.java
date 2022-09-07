@@ -1,5 +1,7 @@
+import unit.planning.TestBFSPlanner;
 import unit.planning.TestBasicAction;
 import unit.planning.TestBasicGoal;
+import unit.planning.TestDFSPlanner;
 import unit.representation.*;
 
 public class MainUnit
@@ -32,13 +34,16 @@ public class MainUnit
         System.out.println("");
         
         //Test Planners
-
+        System.out.println(TestDFSPlanner.allTests() ? " All tests OK " : " At least one test KO " );
+        System.out.println("");
+        System.out.println(TestBFSPlanner.allTests() ? " All tests OK " : " At least one test KO " );
+        System.out.println("");
 
         return ok;
     }
 
     public static void main(String[] args) 
     {
-        System.out.println(MainUnit.allTests() ? " All tests OK " : " At least one test KO " );
+        System.out.println(MainUnit.allTests());
     }
 }
