@@ -17,13 +17,12 @@ public class MainUnit
         System.out.println("");
 
         //Test Contraintes
-        /*
         System.out.println(TestDifferenceConstraint.allTests() ? " All tests OK " : " At least one test KO " );
         System.out.println("");
         System.out.println(TestImplication.allTests() ? " All tests OK " : " At least one test KO " );
         System.out.println("");
         System.out.println(TestUnaryConstraint.allTests() ? " All tests OK " : " At least one test KO " );
-        */
+        System.out.println("");
 
         //Test Action
         System.out.println(TestBasicAction.allTests() ? " All tests OK " : " At least one test KO " );
