@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Stack;
 
 import representation.Variable;
 
@@ -31,23 +34,48 @@ public class BFSPlanner implements Planner
         6: return reverse(BFS_plan)
     */
 
-    /*
     private List<Action> getBfsPlan(Map<Map<Variable, Object>, Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Goal goal)
     {
         ArrayList<Action> res = new ArrayList<>();
         while(goal != null)
         {
-            res.add(plan.get(goal.))
+            //res.add(plan.get(goal.))
         }
         Collections.reverse(res);
         return res;
     }
-    */
+
+    private List<Action> bfs(Map<Map<Variable, Object>, Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan)
+    {
+        HashSet<Map<Variable, Object>> closed = new HashSet<>();
+        closed.add(this.initialState);
+
+        Stack<Map<Variable, Object>> open = new Stack<>();
+        open.push(this.initialState);
+
+        father.put(this.initialState, null);
+
+        if(this.goal.isSatisfiedBy(this.initialState))
+            return new LinkedList<>();
+
+        while(open.size() != 0)
+        {
+            Map<Variable, Object> instantiation = open.pop();
+            closed.add(instantiation);
+
+            for(Action action : this.actions)
+            {
+                
+            }
+        }
+
+        return null;
+    }
 
     @Override
     public List<Action> plan()
     {
-        return null;
+        return bfs(null, null);
     }
 
     @Override
