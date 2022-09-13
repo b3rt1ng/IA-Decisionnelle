@@ -32,7 +32,7 @@ public class BasicAction implements Action
     public Map<Variable, Object> successor(Map<Variable, Object> state) 
     {
         if(!isApplicable(state))
-            return null;
+            return state;
 
         Map<Variable, Object> successor = new HashMap<>(state);
         for(Variable v : this.effect.keySet())
@@ -45,5 +45,16 @@ public class BasicAction implements Action
     public int getCost() 
     {
         return this.cost;
+    }
+
+    @Override
+    public String toString()
+    {
+        String res = "Action :" + "\n";
+        res += "\t" + "precondition : " + this.precondition + "\n";
+        res+= "\t" + "effect : " + this.effect + "\n";
+        res+= "\t" + "cost : " + this.cost + "\n";
+
+        return res;
     }
 }

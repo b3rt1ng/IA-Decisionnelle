@@ -22,5 +22,11 @@ public class BasicGoal implements Goal
         
         return true;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.goalState.toString();
+    }
     
 }
