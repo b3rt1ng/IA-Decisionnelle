@@ -2,6 +2,7 @@ import unit.planning.TestBFSPlanner;
 import unit.planning.TestBasicAction;
 import unit.planning.TestBasicGoal;
 import unit.planning.TestDFSPlanner;
+import unit.planning.TestDijktraPlanner;
 import unit.representation.*;
 
 public class MainUnit
@@ -37,6 +38,9 @@ public class MainUnit
         System.out.println("");
         System.out.println(TestBFSPlanner.allTests() ? " All tests OK " : " At least one test KO " );
         System.out.println("");
+        System.out.println(TestDijktraPlanner.allTests() ? " All tests OK " : " At least one test KO " );
+        System.out.println("");
+        
 
         return ok;
     }
