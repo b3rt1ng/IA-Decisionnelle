@@ -40,7 +40,6 @@ public class MainUnit
         System.out.println("");
         System.out.println(TestDijktraPlanner.allTests() ? " All tests OK " : " At least one test KO " );
         System.out.println("");
-        
 
         return ok;
     }
