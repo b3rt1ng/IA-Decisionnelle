@@ -24,7 +24,7 @@ public class MainUnit
         System.out.println("");
         System.out.println(TestUnaryConstraint.allTests() ? " All tests OK " : " At least one test KO " );
         System.out.println("");
-
+        
         //Test Action
         System.out.println(TestBasicAction.allTests() ? " All tests OK " : " At least one test KO " );
         System.out.println("");
@@ -47,6 +47,6 @@ public class MainUnit
 
     public static void main(String[] args) 
     {
-        System.out.println(MainUnit.allTests());
+        MainUnit.allTests();
     }
 }

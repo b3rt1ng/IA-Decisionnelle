@@ -55,4 +55,13 @@ public class DFSPlanner implements Planner
     @Override
     public Goal getGoal() { return this.goal; }
 
+    @Override
+    public String toString()
+    {
+        String res = "initialState : " + this.initialState + "\n";
+        res += "Actions : " + this.actions + "\n";
+        res += "Goal : " + this.goal + "\n";
+        return res;
+    }
+
 }
