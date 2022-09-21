@@ -12,4 +12,5 @@ public interface Planner
     public abstract Map<Variable, Object> getInitialState();
     public abstract Set<Action> getActions();
     public abstract Goal getGoal(); 
+    public abstract int getNbNodes();
 }

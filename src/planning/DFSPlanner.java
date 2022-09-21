@@ -13,12 +13,14 @@ public class DFSPlanner implements Planner
     private Map<Variable, Object> initialState;
     private Set<Action> actions;
     private Goal goal;
+    private int nbNodes;
 
     public DFSPlanner(Map<Variable, Object> initialState, Set<Action> actions, Goal goal)
     {
         this.initialState = initialState;
         this.actions = actions;
         this.goal = goal;
+        this.nbNodes = 0;
     }
 
     private List<Action> dfs(Map<Variable, Object> state, List<Action> result, Set<Map<Variable, Object>> alreadyExplored)
@@ -30,6 +32,7 @@ public class DFSPlanner implements Planner
         {
             if(action.isApplicable(state) && !alreadyExplored.contains(state))
             {
+                this.nbNodes++;
                 Map<Variable, Object> newState = action.successor(state);
                 alreadyExplored.add(state);
                 result.add(action);
@@ -43,6 +46,7 @@ public class DFSPlanner implements Planner
     @Override
     public List<Action> plan()
     {
+        this.nbNodes = 0;
         return dfs(this.initialState, new ArrayList<>(), new HashSet<Map<Variable, Object>>());
     }
 
@@ -54,6 +58,9 @@ public class DFSPlanner implements Planner
 
     @Override
     public Goal getGoal() { return this.goal; }
+
+    @Override
+    public int getNbNodes() { return this.nbNodes; }
 
     @Override
     public String toString()

@@ -12,6 +12,8 @@ public class TestBasicAction
         ok = ok && BasicActionTests.testSuccessor();
         ok = ok && BasicActionTests.testGetCost();
 
+        System.out.println(ok ? " All tests OK " : " At least one test KO " );
+
         return ok;
     }
 }

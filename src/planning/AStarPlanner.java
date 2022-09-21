@@ -16,12 +16,14 @@ public class AStarPlanner implements Planner {
     private Set<Action> actions;
     private Goal goal;
     private Heuristic heuristique;
+    private int nbNodes;
 
     public AStarPlanner(Map<Variable, Object> initialState, Set<Action> actions, Goal goal, Heuristic heurist) {
         this.initialState = initialState;
         this.actions = actions;
         this.goal = goal;
         this.heuristique = heurist;
+        this.nbNodes = 0;
     }
 
     public Map<Variable, Object> argmin(Map<Map<Variable, Object>, Float> map, Set<Map<Variable, Object>> okKey) {
@@ -42,8 +44,13 @@ public class AStarPlanner implements Planner {
         return res;
     }
 
+
+    /*
+    ** Placer le(s) this.nbNodes++;
+    */
     @Override
     public List<Action> plan() {
+        this.nbNodes = 0;
         Map<Map<Variable, Object>, Action> plan = new HashMap<>();
         Map<Map<Variable, Object>, Float> distance = new HashMap<>();
         Map<Map<Variable, Object>, Map<Variable,Object>> father = new HashMap<>();
@@ -69,4 +76,7 @@ public class AStarPlanner implements Planner {
     public Goal getGoal() {return this.goal;}
 
     public Heuristic getHeuristic() {return this.heuristique;}
+
+    @Override
+    public int getNbNodes() { return this.nbNodes; }
 }

@@ -15,14 +15,16 @@ public class DijkstraPlanner implements Planner {
     private Map<Variable, Object> initialState;
     private Set<Action> actions;
     private Goal goal;
+    private int nbNodes;
 
     public DijkstraPlanner(Map<Variable, Object> initialState, Set<Action> actions, Goal goal) {
         this.initialState = initialState;
         this.actions = actions;
         this.goal = goal;
+        this.nbNodes = 0;
     }
 
-    public List<Action> get_djikstra_plan(Map<Map<Variable, Object>,Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Set<Map<Variable, Object>> goals, Map<Map<Variable, Object>, Float> distance) {
+    private List<Action> get_djikstra_plan(Map<Map<Variable, Object>,Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Set<Map<Variable, Object>> goals, Map<Map<Variable, Object>, Float> distance) {
         LinkedList<Action> dplan = new LinkedList<>();
         Map<Variable, Object> goal = argmin(distance, goals);
         while(goal != null && goal!=this.initialState) {
@@ -33,7 +35,7 @@ public class DijkstraPlanner implements Planner {
         return dplan;
     }
 
-    public Map<Variable, Object> argmin(Map<Map<Variable, Object>, Float> map, Set<Map<Variable, Object>> okKey) {
+    private Map<Variable, Object> argmin(Map<Map<Variable, Object>, Float> map, Set<Map<Variable, Object>> okKey) {
         Map<Variable, Object> res = null;
         Float min = null;
         for(Map<Variable, Object> key: okKey) {
@@ -51,8 +53,12 @@ public class DijkstraPlanner implements Planner {
         return res;
     }
 
+    /*
+    ** placer le(s) this.nbNodes++; 
+    */
     @Override
     public List<Action> plan() {
+        this.nbNodes = 0;
         Map<Map<Variable, Object>, Action> plan = new HashMap<>();
         Map<Map<Variable, Object>, Float> distance = new HashMap<>();
         Map<Map<Variable, Object>, Map<Variable,Object>> father = new HashMap<>();
@@ -88,11 +94,14 @@ public class DijkstraPlanner implements Planner {
     }
 
     @Override
-    public Map<Variable, Object> getInitialState() {return this.initialState;}
+    public Map<Variable, Object> getInitialState() { return this.initialState; }
 
     @Override
-    public Set<Action> getActions() {return this.actions;}
+    public Set<Action> getActions() { return this.actions; }
 
     @Override
-    public Goal getGoal() {return this.goal;}
+    public Goal getGoal() { return this.goal; }
+
+    @Override
+    public int getNbNodes() { return this.nbNodes; }
 }
