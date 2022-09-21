@@ -10,6 +10,8 @@ public class TestBasicGoal
 
         ok = ok && BasicGoalTests.testIsSatisfiedBy();
 
+        System.out.println(ok ? " All tests OK " : " At least one test KO " );
+
         return ok;
     }    
 }

@@ -12,40 +12,40 @@ public class MainUnit
         boolean ok = true;
 
         //Test Variables
-        System.out.println(TestVariable.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestVariable.allTests();
         System.out.println("");
-        System.out.println(TestBooleanVariable.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestBooleanVariable.allTests();
         System.out.println("");
 
         //Test Contraintes
-        System.out.println(TestDifferenceConstraint.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestDifferenceConstraint.allTests();
         System.out.println("");
-        System.out.println(TestImplication.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestImplication.allTests();
         System.out.println("");
-        System.out.println(TestUnaryConstraint.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestUnaryConstraint.allTests();
         System.out.println("");
         
         //Test Action
-        System.out.println(TestBasicAction.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestBasicAction.allTests();
         System.out.println("");
 
         //Test Goal
-        System.out.println(TestBasicGoal.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestBasicGoal.allTests();
         System.out.println("");
         
         //Test Planners
-        System.out.println(TestDFSPlanner.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestDFSPlanner.allTests();
         System.out.println("");
-        System.out.println(TestBFSPlanner.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestBFSPlanner.allTests();
         System.out.println("");
-        System.out.println(TestDijktraPlanner.allTests() ? " All tests OK " : " At least one test KO " );
+        ok = ok && TestDijktraPlanner.allTests();
         System.out.println("");
 
         return ok;
     }
 
     public static void main(String[] args) 
-    {
-        MainUnit.allTests();
+    {   
+        System.out.print(MainUnit.allTests() ? " All tests of classes are OK " : " At least one test of the class is KO " );
     }
 }

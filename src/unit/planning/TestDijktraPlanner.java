@@ -10,6 +10,8 @@ public class TestDijktraPlanner
 
         ok = ok && DijkstraPlannerTests.testPlan();
 
+        System.out.println(ok ? " All tests OK " : " At least one test KO " );
+
         return ok;
     }    
 }

@@ -15,12 +15,14 @@ public class BFSPlanner implements Planner
     private Map<Variable, Object> initialState;
     private Set<Action> actions;
     private Goal goal;
+    private int nbNodes;
 
     public BFSPlanner(Map<Variable, Object> initialState, Set<Action> actions, Goal goal)
     {
         this.initialState = initialState;
         this.actions = actions;
         this.goal = goal;
+        this.nbNodes = 0;
     }
 
     private List<Action> getBfsPlan(Map<Map<Variable, Object>, Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Map<Variable, Object> goal)
@@ -60,6 +62,7 @@ public class BFSPlanner implements Planner
                     Map<Variable, Object> next = action.successor(instantiation);
                     if(!closed.contains(next) && !open.contains(next))
                     {
+                        this.nbNodes++;
                         father.put(next, instantiation);
                         plan.put(next, action);
                         if(this.goal.isSatisfiedBy(next))
@@ -76,6 +79,7 @@ public class BFSPlanner implements Planner
     @Override
     public List<Action> plan()
     {
+        this.nbNodes = 0;
         return bfs(new HashMap<>(), new HashMap<>());
     }
 
@@ -89,6 +93,9 @@ public class BFSPlanner implements Planner
     public Goal getGoal() { return this.goal; }
 
     @Override
+    public int getNbNodes() { return this.nbNodes; }
+
+    @Override
     public String toString()
     {
         String res = "initialState : " + this.initialState + "\n";
@@ -96,5 +103,4 @@ public class BFSPlanner implements Planner
         res += "Goal : " + this.goal + "\n";
         return res;
     }
-
 }
