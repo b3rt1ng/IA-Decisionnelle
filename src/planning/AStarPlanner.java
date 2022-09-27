@@ -7,23 +7,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Collections;
 
 public class AStarPlanner implements Planner {
 
     private Map<Variable, Object> initialState;
     private Set<Action> actions;
     private Goal goal;
-    private Heuristic heuristique;
+    private Heuristic heuristic;
     private int nbNodes;
 
-    public AStarPlanner(Map<Variable, Object> initialState, Set<Action> actions, Goal goal, Heuristic heurist) {
+    public AStarPlanner(Map<Variable, Object> initialState, Set<Action> actions, Goal goal, Heuristic heuristic) {
         this.initialState = initialState;
         this.actions = actions;
         this.goal = goal;
-        this.heuristique = heurist;
+        this.heuristic = heuristic;
         this.nbNodes = 0;
+        
     }
 
     public Map<Variable, Object> argmin(Map<Map<Variable, Object>, Float> map, Set<Map<Variable, Object>> okKey) {
@@ -44,27 +43,39 @@ public class AStarPlanner implements Planner {
         return res;
     }
 
-
-    /*
-    ** Placer le(s) this.nbNodes++;
-    */
     @Override
     public List<Action> plan() {
         this.nbNodes = 0;
         Map<Map<Variable, Object>, Action> plan = new HashMap<>();
         Map<Map<Variable, Object>, Float> distance = new HashMap<>();
         Map<Map<Variable, Object>, Map<Variable,Object>> father = new HashMap<>();
-        Map<Map<Variable, Object>, Heuristic> value = new HashMap<>();
+        Map<Map<Variable, Object>, Float> value = new HashMap<>();
         Set<Map<Variable, Object>> open = new HashSet<>();
+        BFSPlanner bfs = new BFSPlanner(this.initialState,this.actions,this.goal);
         open.add(this.initialState);
         father.put(this.initialState, null);
         distance.put(this.initialState, new Float(0));
-        value.put(this.initialState,this.heuristique);
+        value.put(this.initialState,this.heuristic.estimate(this.initialState));
         while (!(open.isEmpty())) {
             Map<Variable, Object> instantiation = argmin(distance, open);
-            if (this.goal.isSatisfiedBy(instantiation))
-                //getBfsPlan(father, plan, instantition)
-
+            if (this.goal.isSatisfiedBy(instantiation)) {
+                return bfs.getBfsPlan(father,plan,instantiation);
+            } else {
+                open.remove(instantiation);
+                for (Action action : this.actions) {
+                    if (action.isApplicable(instantiation)) {
+                        Map<Variable, Object> next = action.successor(instantiation);
+                        if (!distance.containsKey(next))
+                            distance.put(next, Float.POSITIVE_INFINITY);
+                        if (distance.get(next) > distance.get(instantiation) + action.getCost()) {
+                            distance.put(next, distance.get(instantiation) + action.getCost());
+                            value.put(next, distance.get(next) + this.heuristic.estimate(next));
+                            father.put(next, instantiation);
+                            open.add(next);                       
+                        }
+                    }
+                }
+            }
         }
         return null;
     }
@@ -78,7 +89,7 @@ public class AStarPlanner implements Planner {
     @Override
     public Goal getGoal() {return this.goal;}
 
-    public Heuristic getHeuristic() {return this.heuristique;}
+    public Heuristic getHeuristic() {return this.heuristic;}
 
     @Override
     public int getNbNodes() { return this.nbNodes; }
