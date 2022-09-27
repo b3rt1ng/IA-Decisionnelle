@@ -1,3 +1,4 @@
+import unit.planning.TestAStarPlanner;
 import unit.planning.TestBFSPlanner;
 import unit.planning.TestBasicAction;
 import unit.planning.TestBasicGoal;
@@ -39,6 +40,8 @@ public class MainUnit
         ok = ok && TestBFSPlanner.allTests();
         System.out.println("");
         ok = ok && TestDijktraPlanner.allTests();
+        System.out.println("");
+        ok = ok && TestAStarPlanner.allTests();
         System.out.println("");
 
         return ok;
