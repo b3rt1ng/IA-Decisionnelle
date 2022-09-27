@@ -25,7 +25,7 @@ public class BFSPlanner implements Planner
         this.nbNodes = 0;
     }
 
-    private List<Action> getBfsPlan(Map<Map<Variable, Object>, Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Map<Variable, Object> goal)
+    public List<Action> getBfsPlan(Map<Map<Variable, Object>, Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Map<Variable, Object> goal)
     {
         LinkedList<Action> res = new LinkedList<>();
         while(goal != this.initialState)
