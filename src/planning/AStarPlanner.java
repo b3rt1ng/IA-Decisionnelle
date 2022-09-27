@@ -61,7 +61,10 @@ public class AStarPlanner implements Planner {
         distance.put(this.initialState, new Float(0));
         value.put(this.initialState,this.heuristique);
         while (!(open.isEmpty())) {
-            
+            Map<Variable, Object> instantiation = argmin(distance, open);
+            if (this.goal.isSatisfiedBy(instantiation))
+                //getBfsPlan(father, plan, instantition)
+
         }
         return null;
     }
