@@ -9,9 +9,9 @@ public class TestSondeurs
     {
         System.out.println("TestSondeurBFSPlanner : moyenne=" + TestSondeurs.testSondeurBFSPlanner());
         TestSondeurs.testSondeurDFSPlanner();
-        TestSondeurs.testSondeurDFSPlanner();
-        TestSondeurs.testSondeurDFSPlanner();
-        TestSondeurs.testSondeurDFSPlanner();
+        TestSondeurs.testSondeurBFSPlanner();
+        TestSondeurs.testSondeurDijkstraPlanner();
+        TestSondeurs.testSondeurtestSondeurAStarPlanner();
         return true;
     }
 
@@ -24,6 +24,7 @@ public class TestSondeurs
     public static double testSondeurBFSPlanner()
     {
         TestBFSPlanner.allTests();
+        System.out.println();
 
         int res = 0;
         for(int i : BFSPlanner.ensNbNodes)
