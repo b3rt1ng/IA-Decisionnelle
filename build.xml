@@ -1,8 +1,9 @@
 <project name="IA_aide_decision" default="compile" basedir=".">
 
-    <property name="projet.sources.dir" value="src"/>
+    <property name="projet.src.dir" value="src"/>
     <property name="projet.bin.dir" value="bin"/>
     <property name="projet.lib.dir" value="lib"/>
+    <property name="projet.doc.dir" value="doc"/>
 
     <path id="projet.classpath">
         <pathelement location="${projet.bin.dir}"/>
@@ -15,7 +16,7 @@
     <target name="compile" description="Compilation des classes">
         <delete dir="${projet.bin.dir}" />
         <mkdir dir="${projet.bin.dir}"/>
-        <javac srcdir="${projet.sources.dir}" destdir="${projet.bin.dir}" debug="on" optimize="off" deprecation="on" includeantruntime="false">
+        <javac srcdir="${projet.src.dir}" destdir="${projet.bin.dir}" debug="on" optimize="off" deprecation="on" includeantruntime="false">
             <classpath refid="projet.classpath"/>
         </javac>
     </target>
@@ -30,6 +31,13 @@
         <java classname="Main" fork="false">
             <classpath refid="projet.classpath"/>
         </java>
+    </target>
+
+    <target name="doc">
+        <delete dir="${projet.doc.dir}" />
+        <javadoc sourcepath="${projet.src.dir}" destdir="doc">
+            <classpath refid="projet.classpath" />
+        </javadoc>
     </target>
 
     <!--<target name="runWindow" description="execution" depends="compile">
