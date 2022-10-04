@@ -17,24 +17,13 @@ public abstract class AbstractSolver implements Solver {
         this.contraintes = contraintes;
     }
     
-    public boolean evaluer(Map<Variable, Object> affectation) {
-        for (Constraint c : this.contraintes) {
-            if (!(c.isSatisfiedBy(affectation))) {
-             return false;   
-            }
-        }
-        return true;
-    }
-    
     public boolean isConsistent(Map<Variable, Object> affectation) {
-        if (this.variables.equals(affectation.keySet())) {
-            if (evaluer(affectation)){
-                return true;
-            } else {
-                return false;
+        for (Constraint constraint : this.contraintes) {
+            if (affectation.keySet().containsAll(constraint.getScope())){
+                if(constraint.isSatisfiedBy(affectation))
+                    return true;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 }
