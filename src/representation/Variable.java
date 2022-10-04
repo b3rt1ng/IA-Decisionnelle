@@ -2,8 +2,16 @@ package representation;
 
 import java.util.*;
 
+/**
+ * Classe représentant une variable.
+ * 
+ * @author Kenzo LECOINDRE
+ */
 public class Variable
 {
+    /**
+     *
+     */
     protected String name;
     protected Set<Object> domain;
 

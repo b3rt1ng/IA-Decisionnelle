@@ -11,7 +11,7 @@ public class TestSondeurs
         TestSondeurs.testSondeurDFSPlanner();
         TestSondeurs.testSondeurBFSPlanner();
         TestSondeurs.testSondeurDijkstraPlanner();
-        TestSondeurs.testSondeurtestSondeurAStarPlanner();
+        TestSondeurs.testSondeurAStarPlanner();
         return true;
     }
 
@@ -23,6 +23,7 @@ public class TestSondeurs
 
     public static double testSondeurBFSPlanner()
     {
+        /*
         TestBFSPlanner.allTests();
         System.out.println();
 
@@ -31,6 +32,9 @@ public class TestSondeurs
             res+=i;
 
         res = res/BFSPlanner.ensNbNodes.size();
+        */
+
+        int res = 0;
         return res;
         
     }
