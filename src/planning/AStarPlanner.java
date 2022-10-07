@@ -34,7 +34,7 @@ public class AStarPlanner implements Planner {
                 min = map.get(key);
             }
             else {
-                if(min.compareTo(map.get(key)) > 0) {
+                if (min.compareTo(map.get(key)) > 0) {
                     res = key;
                     min = map.get(key);
                 }
@@ -71,6 +71,7 @@ public class AStarPlanner implements Planner {
                             distance.put(next, distance.get(instantiation) + action.getCost());
                             value.put(next, distance.get(next) + this.heuristic.estimate(next));
                             father.put(next, instantiation);
+                            plan.put(next, action);
                             open.add(next);                       
                         }
                     }
