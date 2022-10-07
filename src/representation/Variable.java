@@ -95,7 +95,7 @@ public class Variable
      * The toString function returns a string representation of the object.
      * This is useful for debugging purposes, and can be used to print out an
      * object or part of an object.  The function returns a String that contains
-     * the name of the variable and the hash code of variable.
+     * the name of the variable.
      * 
     * @return A String representation of the variable.
     * 
@@ -103,9 +103,6 @@ public class Variable
     @Override
     public String toString()
     {
-        String res = this.name + " :";
-        res += "\n" + "hashcode:" + this.hashCode();
-
-        return res;
+        return this.name;
     }
 }

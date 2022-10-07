@@ -3,7 +3,7 @@ import unit.planning.TestBFSPlanner;
 import unit.planning.TestBasicAction;
 import unit.planning.TestBasicGoal;
 import unit.planning.TestDFSPlanner;
-import unit.planning.TestDijktraPlanner;
+import unit.planning.TestDijkstraPlanner;
 import unit.representation.*;
 
 public class MainUnit
@@ -39,7 +39,7 @@ public class MainUnit
         System.out.println("");
         ok = ok && TestBFSPlanner.allTests();
         System.out.println("");
-        ok = ok && TestDijktraPlanner.allTests();
+        ok = ok && TestDijkstraPlanner.allTests();
         System.out.println("");
         ok = ok && TestAStarPlanner.allTests();
         System.out.println("");
