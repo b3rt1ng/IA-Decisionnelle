@@ -3,21 +3,27 @@ package representation;
 import java.util.*;
 
 /**
- * Classe représentant une variable.
+ * Class representing a variable.
  * 
  * @author Kenzo LECOINDRE
  */
 public class Variable
 {
+    /**
+     * The name of the variable.
+     */
     protected String name;
+
+    /**
+     * The domain of the variable.
+     */
     protected Set<Object> domain;
 
     /**
-     * Constructor that construct a new Variable.
+     * Initialise a new Variable given a name and a domain.
      *
-     * 
-     * @param o Used to Compare the object to this.
-     * @return True if the name of both variables are equal.
+     * @param name A String object representing a name.
+     * @param domain A Set of objects representing a the domain that this variable is based on.
      * 
      */
     public Variable(String name, Set<Object> domain)
@@ -27,20 +33,20 @@ public class Variable
     }
 
     /**
-     * The getName function returns the name of this object.
+     * The getName function returns the name of the variable.
      *
      * 
-     * @return The name of the person.
+     * @return The name of the variable.
      * 
      */
     public String getName() { return this.name; }
 
 
     /**
-     * The getDomain function returns the domain of the function.
+     * The getDomain function returns the domain of the variable.
      *
      * 
-     * @return The domain of the function.
+     * @return The domain of the variable.
      * 
      */
     public Set<Object> getDomain() { return this.domain; }
@@ -56,15 +62,24 @@ public class Variable
     @Override
     public boolean equals(Object o)
     {
-        Variable v = (Variable)o;
+        try
+        {
+            Variable v = (Variable)o;
 
-        if(v.getName().equals(this.name))
-            return true;
+            if(v.getName().equals(this.name))
+                return true;
+        }
+        catch(Exception e) {}
+
         return false;
     }
 
     /**
-     * The hashCode function returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap.
+     * The hashCode function returns a hash code value for the variable based on the name of the variable. 
+     * 
+     * </br>
+     * 
+     * This method is supported for the benefit of hash tables such as those provided by HashMap.
      * The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the {
      * 
      * @return The hash code of the name field.
@@ -80,18 +95,9 @@ public class Variable
      * The toString function returns a string representation of the object.
      * This is useful for debugging purposes, and can be used to print out an
      * object or part of an object.  The function returns a String that contains
-     * the name of the class (e.g., "Person"), followed by a colon, then followed by
-     * all fields in this class separated by commas and ending with a semicolon.  For example:<br> <code>Person:name=John;age=25</code><br> Note that this function does not return any information about other classes that may be related to this one via inheritance.<br><p/>This function is called automatically when you print out an Object using System.out's println method.<p/>For more information on what each field represents, see Person's JavaDoc comments above its declaration in Person2_3_4_5_6.</p></td></tr></table>
-
-        public static void main(String[] args) {
-
-            // Create some objects from our new class:
-
-            Person p = new Person("John", 25); // Calls constructor for us!
-
-            System.out.println(p); // Prints it out! (See toString() above
-    * 
-    * @return The name of the object.
+     * the name of the variable and the hash code of variable.
+     * 
+    * @return A String representation of the variable.
     * 
     */
     @Override
