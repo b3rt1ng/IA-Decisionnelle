@@ -44,7 +44,7 @@ public class DijkstraPlanner implements Planner {
                 min = map.get(key);
             }
             else {
-                if(min.compareTo(map.get(key)) > 0) {
+                if (min.compareTo(map.get(key)) > 0) {
                     res = key;
                     min = map.get(key);
                 }
