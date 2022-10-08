@@ -10,6 +10,12 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Collections;
 
+/**
+ * Class implementing a Dijstra algorythm.
+ * 
+ * @author Antoine COLLENOT
+ */
+
 public class DijkstraPlanner implements Planner {
 
     private Map<Variable, Object> initialState;
@@ -24,6 +30,16 @@ public class DijkstraPlanner implements Planner {
         this.nbNodes = 0;
     }
 
+    
+    /** 
+     * Description comming soon.
+     * 
+     * @param father Map containing the fathers of one's node.
+     * @param plan Map of actions to execute for each nodes.
+     * @param goals Set nodes we want to end with.
+     * @param distance Map containing the distance between one node to another.
+     * @return List<Action>
+     */
     private List<Action> get_djikstra_plan(Map<Map<Variable, Object>,Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Set<Map<Variable, Object>> goals, Map<Map<Variable, Object>, Float> distance) {
         LinkedList<Action> dplan = new LinkedList<>();
         Map<Variable, Object> goal = argmin(distance, goals);
@@ -35,6 +51,14 @@ public class DijkstraPlanner implements Planner {
         return dplan;
     }
 
+    
+    /** 
+     * Description comming soon.
+     * 
+     * @param map Map of Nodes and their distance from one another.
+     * @param okKey Set of linkable nodes on the map.
+     * @return Map<Variable, Object>
+     */
     private Map<Variable, Object> argmin(Map<Map<Variable, Object>, Float> map, Set<Map<Variable, Object>> okKey) {
         Map<Variable, Object> res = null;
         Float min = null;
@@ -53,9 +77,14 @@ public class DijkstraPlanner implements Planner {
         return res;
     }
 
-    /*
-    ** placer le(s) this.nbNodes++; 
-    */
+    
+    /** 
+     * Implementation of the Dijktsra's algorithm to find the shortest path between nodes in a graph like structure.
+     * Dijkstra's algorithm will be looking for each node connected to one another and return the shortest path by
+     * following a breadth-first traversal logic.
+     * 
+     * @return List<Action>
+     */
     @Override
     public List<Action> plan() {
         this.nbNodes = 0;
@@ -68,6 +97,7 @@ public class DijkstraPlanner implements Planner {
         distance.put(this.initialState, new Float(0));
         open.add(this.initialState);
         while (!(open.isEmpty())) {
+            this.nbNodes++;
             Map<Variable, Object> instantiation = argmin(distance, open);
             open.remove(instantiation);
             if (this.goal.isSatisfiedBy(instantiation))
