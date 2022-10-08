@@ -25,6 +25,12 @@ public class AStarPlanner implements Planner {
         
     }
 
+    
+    /** 
+     * @param map
+     * @param okKey
+     * @return Map<Variable, Object>
+     */
     public Map<Variable, Object> argmin(Map<Map<Variable, Object>, Float> map, Set<Map<Variable, Object>> okKey) {
         Map<Variable, Object> res = null;
         Float min = null;
@@ -43,6 +49,16 @@ public class AStarPlanner implements Planner {
         return res;
     }
 
+    
+    /** 
+     * Implementation of the A* algorithm to find the shortest path between nodes in a graph like structure 
+     * using an heuristic intuitive logic.
+     * The heuristic is what differs from a simple Dijkstra algorithm since it allows us to see the remaining
+     * distance from the node we are aiming for as well as the distance from each node to another, 
+     * therefore allowing us to decide which node we will check in priority.
+     * 
+     * @return List<Action>
+     */
     @Override
     public List<Action> plan() {
         this.nbNodes = 0;
@@ -57,6 +73,7 @@ public class AStarPlanner implements Planner {
         distance.put(this.initialState, new Float(0));
         value.put(this.initialState,this.heuristic.estimate(this.initialState));
         while (!(open.isEmpty())) {
+            this.nbNodes++;
             Map<Variable, Object> instantiation = argmin(distance, open);
             if (this.goal.isSatisfiedBy(instantiation)) {
                 return bfs.getBfsPlan(father,plan,instantiation);
