@@ -19,7 +19,7 @@ public class BasicGoal implements Goal
     /**
      * Initialise a new BasicGoal given a state.
      *
-     * @param precondition A Map where each key is a Variable and each value is these value representing the goal state.
+     * @param goalState A Map where each key is a Variable and each value is these value representing the goal state.
      */
     public BasicGoal(Map<Variable, Object> goalState)
     {
