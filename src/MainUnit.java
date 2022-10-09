@@ -6,8 +6,18 @@ import unit.planning.TestDFSPlanner;
 import unit.planning.TestDijkstraPlanner;
 import unit.representation.*;
 
+/**
+ * Class containing all functions to tests all classes of the project.
+ * 
+ * @author Kenzo LECOINDRE
+ */
 public class MainUnit
 {
+    /**
+     * Launch all the tests that this class concern.
+     * 
+     * @return true if all tests are ok, false otherwhise.
+     */
     public static boolean allTests()
     {
         boolean ok = true;

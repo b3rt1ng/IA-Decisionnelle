@@ -2,8 +2,18 @@ package unit.representation;
 
 import representationtests.VariableTests;
 
+/**
+ * Class containing all functions to tests all functions of the class Variable.
+ * 
+ * @author Kenzo LECOINDRE
+ */
 public class TestVariable
 {
+    /**
+     * Launch all the tests that this class concern.
+     * 
+     * @return true if all tests are ok, false otherwhise.
+     */
     public static boolean allTests()
     {
         boolean ok = true ;
