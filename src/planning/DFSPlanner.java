@@ -62,6 +62,8 @@ public class DFSPlanner implements Planner
      */
     private List<Action> dfs(Map<Variable, Object> state, List<Action> result, Set<Map<Variable, Object>> alreadyExplored)
     {
+        this.nbNodes++;
+        
         if(this.goal.isSatisfiedBy(state))
             return result;
 
@@ -69,7 +71,6 @@ public class DFSPlanner implements Planner
         {
             if(action.isApplicable(state) && !alreadyExplored.contains(state))
             {
-                this.nbNodes++;
                 Map<Variable, Object> newState = action.successor(state);
                 alreadyExplored.add(state);
                 result.add(action);
