@@ -5,12 +5,36 @@ import java.util.Map;
 
 import representation.Variable;
 
+/**
+ * Class representing a basic action.
+ * 
+ * @author Kenzo LECOINDRE
+ */
 public class BasicAction implements Action
 {
+    /**
+     * A state representing the preconditions of the action.
+     */
     private Map<Variable, Object> precondition;
+    
+    /**
+     * A state representing the effect of the action.
+     */
     private Map<Variable, Object> effect;
+
+    /**
+     * the cost of the action.
+     */
     private int cost;
 
+    /**
+     * Initialise a new BasicAction given a precondition, an effect and a cost.
+     *
+     * @param precondition A Map where each key is a Variable and each value is these value representing the precondtion.
+     * @param effect A Map where each key is a Variable and each value is these value representing the effect.
+     * @param cost An int representing the cost.
+     * 
+     */
     public BasicAction(Map<Variable, Object> precondition, Map<Variable, Object> effect, int cost)
     {
         this.precondition = precondition;
@@ -47,6 +71,15 @@ public class BasicAction implements Action
         return this.cost;
     }
 
+    /**
+     * The toString function returns a string representation of the object.
+     * This is useful for debugging purposes, and can be used to print out an
+     * object or part of an object.  This function returns a String that contains
+     * the string representation of all the attribute of a basic action.
+     * 
+    * @return A String representation of the BasicAction.
+    * 
+    */
     @Override
     public String toString()
     {
