@@ -97,6 +97,7 @@ public class BFSPlanner implements Planner
 
         while(open.size() != 0)
         {
+            this.nbNodes++;
             Map<Variable, Object> instantiation = open.removeFirst();
             closed.add(instantiation);
 
@@ -107,7 +108,6 @@ public class BFSPlanner implements Planner
                     Map<Variable, Object> next = action.successor(instantiation);
                     if(!closed.contains(next) && !open.contains(next))
                     {
-                        this.nbNodes++;
                         father.put(next, instantiation);
                         plan.put(next, action);
                         if(this.goal.isSatisfiedBy(next))
