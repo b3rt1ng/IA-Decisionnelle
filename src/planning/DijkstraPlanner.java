@@ -94,7 +94,7 @@ public class DijkstraPlanner implements Planner {
         Set<Map<Variable, Object>> goals = new HashSet<>();
         Set<Map<Variable, Object>> open = new HashSet<>();
         father.put(this.initialState, null);
-        distance.put(this.initialState, new Float(0));
+        distance.put(this.initialState, Float.valueOf(0));
         open.add(this.initialState);
         while (!(open.isEmpty())) {
             this.nbNodes++;

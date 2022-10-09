@@ -70,7 +70,7 @@ public class AStarPlanner implements Planner {
         BFSPlanner bfs = new BFSPlanner(this.initialState,this.actions,this.goal);
         open.add(this.initialState);
         father.put(this.initialState, null);
-        distance.put(this.initialState, new Float(0));
+        distance.put(this.initialState, Float.valueOf(0));
         value.put(this.initialState,this.heuristic.estimate(this.initialState));
         while (!(open.isEmpty())) {
             this.nbNodes++;
