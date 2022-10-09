@@ -35,7 +35,7 @@
 
     <target name="doc">
         <delete dir="${projet.doc.dir}" />
-        <javadoc sourcepath="${projet.src.dir}" destdir="doc">
+        <javadoc sourcepath="${projet.src.dir}" destdir="doc" access="private">
             <classpath refid="projet.classpath" />
         </javadoc>
     </target>
