@@ -1,3 +1,4 @@
+import unit.csp.TestArcConsistency;
 import unit.planning.TestAStarPlanner;
 import unit.planning.TestBFSPlanner;
 import unit.planning.TestBasicAction;
@@ -53,6 +54,13 @@ public class MainUnit
         System.out.println("");
         ok = ok && TestAStarPlanner.allTests();
         System.out.println("");
+
+        //Test ArcConsistency
+        ok = ok && TestArcConsistency.allTests();
+
+        //Test Solvers
+
+
 
         return ok;
     }
