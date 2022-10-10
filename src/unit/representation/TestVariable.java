@@ -5,7 +5,7 @@ import representationtests.VariableTests;
 /**
  * Class containing all functions to tests all functions of the class Variable.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestVariable
 {

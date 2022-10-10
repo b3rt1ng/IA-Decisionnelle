@@ -5,7 +5,7 @@ import planningtests.BasicGoalTests;
 /**
  * Class containing all functions to tests all functions of the class BasicGoal.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestBasicGoal 
 {

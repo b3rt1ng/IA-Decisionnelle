@@ -5,7 +5,7 @@ import representationtests.ImplicationTests;
 /**
  * Class containing all functions to tests all functions of the class Implication.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestImplication 
 {

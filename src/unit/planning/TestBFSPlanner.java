@@ -5,7 +5,7 @@ import planningtests.BFSPlannerTests;
 /**
  * Class containing all functions to tests all functions of the class BFSPlanner.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestBFSPlanner 
 {
