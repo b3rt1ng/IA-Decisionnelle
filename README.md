@@ -12,10 +12,10 @@ Lien du [TP2](https://ecampus.unicaen.fr/pluginfile.php/1250252/mod_resource/con
 
 Ant builder commands:
 ```
-ant compile
-ant test
-ant run
-ant doc
+ant compile #simple compiling of the project
+ant test #compile and run the tests on the project
+ant run #compile and run the project
+ant doc #generate the whole javadoc of the peoject
 ```
 avancée du projet
 - [ ] fil rouge
