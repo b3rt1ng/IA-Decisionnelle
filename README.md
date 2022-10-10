@@ -18,6 +18,7 @@ ant run
 ant doc
 ```
 avancée du projet
+- [ ] fil rouge
 - [x] représentation
 - [x] planification
 - [ ] csp
