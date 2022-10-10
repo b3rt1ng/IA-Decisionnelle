@@ -75,7 +75,7 @@ public class DijkstraPlanner implements Planner {
 
     
     /** 
-     * Find the lowest distance between a node and every non visited nodes admiting a Map of all the linkable nodes.
+     * Find the lowest distance between the original node and every non visited nodes admiting a Map of all the linkable nodes.
      * 
      * @param map Map of Nodes and their distance.
      * @param okKey Set of linkable nodes.
