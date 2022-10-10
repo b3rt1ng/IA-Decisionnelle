@@ -12,8 +12,17 @@ import java.util.HashSet;
 
 public class DifferenceConstraint implements Constraint {
 
-    Variable v1,v2; 
+    /**
+     * Variables meant to be passed to the class in order to check it's satisfaction.
+     */
+    Variable v1,v2;
 
+    /** 
+     * Constraint meant to be satisifed if given two variables v1 and v2, v1 is different from v2
+     * 
+     * @param v1 A simple variable.
+     * @param v2 A simple variable.
+     */
     public DifferenceConstraint(Variable v1, Variable v2) {
         this.v1 = v1;
         this.v2 = v2;
@@ -21,9 +30,7 @@ public class DifferenceConstraint implements Constraint {
 
     
     /** 
-     * Returns a set of variables to which the constraint applies.
-     * 
-     * @return Set<Variable>
+     * {@inheritdoc}
      */
     public Set<Variable> getScope() {
         Set<Variable> scope = new HashSet<Variable>();
@@ -34,11 +41,9 @@ public class DifferenceConstraint implements Constraint {
 
     
     /** 
-     * Returns wheter or not an instance satisfy the current constraint.
      * This constraint will only be satisifed if given two variables v1 and v2, v1 is different from v2.
      * 
-     * @param instance
-     * @return boolean
+     * {@inheritdoc}
      */
     public boolean isSatisfiedBy(Map<Variable, Object> instance) {
         if (!(instance.keySet().contains(this.v1) && instance.keySet().contains(this.v2)))

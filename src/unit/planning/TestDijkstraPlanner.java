@@ -5,12 +5,12 @@ import planningtests.DijkstraPlannerTests;
 /**
  * Class containing all functions to tests all functions of the class DjikstraPlanner.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot
  */
 public class TestDijkstraPlanner
 {
     /**
-     * Launch all the tests that this class concern.
+     * Launch all the tests concerning this class.
      * 
      * @return true if all tests are ok, false otherwhise.
      */

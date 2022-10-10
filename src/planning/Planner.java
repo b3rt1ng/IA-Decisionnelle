@@ -16,7 +16,7 @@ public interface Planner
     /**
      * This method launch the plannification.
      * 
-     * @return A list of actions to go the the final State sorted in order.
+     * @return A list of Action to execute in order to get from a Node to another.
      */
     public abstract List<Action> plan();
 
@@ -28,7 +28,7 @@ public interface Planner
     public abstract Map<Variable, Object> getInitialState();
 
     /**
-     * This method return a the list of actions allowed to resolve the problem.
+     * This method return a the list of actions allowed to solve the problem.
      * 
      * @return A list of actions.
      */

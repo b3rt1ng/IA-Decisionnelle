@@ -12,8 +12,24 @@ import java.util.HashSet;
 
 public class Implication implements Constraint {
 
+    /**
+     * Variables meant to be passed to the class in order to check it's satisfaction.
+     */
     Variable v1,v2;
+
+    /**
+     * Sets meant to be passed to the class in order to check it's satisfaction.
+     */
     Set<Object> s1,s2;
+
+    /** 
+     * Constraint meant to be satisifed if given a v1 affected to a S1 set implies a v2 affected to a S2 set, v1 and v2 being two varaibles.
+     * 
+     * @param v1 a simple variable.
+     * @param v2 a simple variable.
+     * @param s1 a set of any type.
+     * @param s2 a set of any type.
+     */
 
     public Implication(Variable v1, Set<Object> s1,Variable v2, Set<Object> s2) {
         this.v1 = v1;
@@ -24,9 +40,7 @@ public class Implication implements Constraint {
 
     
     /** 
-     * Returns a set of variables to which the constraint applies.
-     * 
-     * @return Set<Variable>
+     * {@inheritdoc}
      */
     public Set<Variable> getScope() {
         Set<Variable> scope = new HashSet<Variable>();
@@ -37,11 +51,9 @@ public class Implication implements Constraint {
 
     
     /** 
-     * Returns wheter or not an instance satisfy the current constraint.
      * This constraint will only be satisifed if given a v1 affected to a S1 set implies a v2 affected to a S2 set, v1 and v2 being two varaibles.
      * 
-     * @param instance
-     * @return boolean
+     * {@inheritdoc}
      */
     public boolean isSatisfiedBy(Map<Variable, Object> instance) {
         if (!(instance.keySet().contains(this.v1) && instance.keySet().contains(this.v2)))

@@ -6,7 +6,7 @@ import representation.Variable;
 
 
 /**
- * Interface which contains all methods concerning a Goal.
+ * Interface which contains all the methods concerning a Goal.
  * 
  * @author Kenzo LECOINDRE
  */

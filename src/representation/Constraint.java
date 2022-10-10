@@ -10,6 +10,16 @@ import java.util.*;
 
 public interface Constraint 
 {
+    /** 
+     * Returns a set of variables to which the constraint applies.
+     * 
+     * @return the variables from the vurrent constraint.
+     */
     public Set<Variable> getScope();
+
+    /**
+     * @param instance An instance ton compare to.
+     * @return Wheter or not an instance satisfy the current constraint.
+     */
     public boolean isSatisfiedBy(Map<Variable, Object> instance);
 }
