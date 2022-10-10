@@ -10,7 +10,7 @@ import representationtests.DifferenceConstraintTests;
 public class TestDifferenceConstraint 
 {
     /**
-     * Launch all the tests that this class concern.
+     * Launch all the tests concerning this class.
      * 
      * @return true if all tests are ok, false otherwhise.
      */

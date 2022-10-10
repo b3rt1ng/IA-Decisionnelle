@@ -12,8 +12,22 @@ import java.util.HashSet;
 
 public class UnaryConstraint implements Constraint {
     
+    /**
+     * Variable meant to be passed to the class in order to check it's satisfaction.
+     */
     Variable v1;
+
+    /**
+     * Set meant to be passed to the class in order to check it's satisfaction.
+     */
     Set<Object> s1;
+
+    /** 
+     * Constraint meant to be satisifed if given a variable "v" and a set "S", S has to be a subset of v's domain.
+     * 
+     * @param v1 a simple variable.
+     * @param s1 a set of any type.
+     */
 
     public UnaryConstraint(Variable v1, Set<Object> s1) {
         this.v1 = v1;
@@ -21,9 +35,7 @@ public class UnaryConstraint implements Constraint {
     }
 
     /** 
-     * Returns a set of variables to which the constraint applies.
-     * 
-     * @return Set<Variable>
+     * {@inheritdoc}
      */
     public Set<Variable> getScope() {
         Set<Variable> scope = new HashSet<Variable>();
@@ -32,11 +44,9 @@ public class UnaryConstraint implements Constraint {
     }
 
     /** 
-     * Returns wheter or not an instance satisfy the current constraint.
      * This constraint will only be satisifed if given a variable "v" and a set "S", S has to be a subset of v's domain.
      * 
-     * @param instance
-     * @return boolean
+     * {@inheritdoc}
      */
     public boolean isSatisfiedBy(Map<Variable, Object> instance) {
         if (!(instance.keySet().contains(this.v1)))

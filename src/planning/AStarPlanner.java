@@ -8,28 +8,62 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Class implementing an A* algorythm.
+ * 
+ * @author Antoine COLLENOT
+ */
+
 public class AStarPlanner implements Planner {
 
+    /**
+     * A map representing the initial state of our class, containing a variable and its value, respectively as its key and value.
+     */
     private Map<Variable, Object> initialState;
+
+    /**
+     * A set of all possible actions executable for each nodes.
+     */
     private Set<Action> actions;
+
+    /**
+     * A goal representing the result we're aiming for.
+     */
     private Goal goal;
+
+    /**
+     * An heuristic meant to prioritize the nodes our method will check first.
+     */
     private Heuristic heuristic;
+
+    /**
+     * Counter to increment for each node we visited during the algorithm execution.
+     */
     private int nbNodes;
 
+    /** 
+     * Implementation of an A* based path finding algorytmh.
+     * 
+     * @param initialState A map representing the initial state of our class, containing a variable and its value, respectively as its key and value.
+     * @param actions A set of all possible actions executable for each nodes.
+     * @param goal Set nodes we want to end with.
+     * @param heuristic An heuristic like class.
+     */
     public AStarPlanner(Map<Variable, Object> initialState, Set<Action> actions, Goal goal, Heuristic heuristic) {
         this.initialState = initialState;
         this.actions = actions;
         this.goal = goal;
         this.heuristic = heuristic;
         this.nbNodes = 0;
-        
     }
 
     
     /** 
-     * @param map
-     * @param okKey
-     * @return Map<Variable, Object>
+     * Find the lowest distance between a node and every non visited nodes admiting a Map of all the linkable nodes.
+     * 
+     * @param map Map of Nodes and their distance.
+     * @param okKey Set of linkable nodes.
+     * @return The lowest distance of a Node considering every linkable nodes.
      */
     public Map<Variable, Object> argmin(Map<Map<Variable, Object>, Float> map, Set<Map<Variable, Object>> okKey) {
         Map<Variable, Object> res = null;
@@ -53,11 +87,9 @@ public class AStarPlanner implements Planner {
     /** 
      * Implementation of the A* algorithm to find the shortest path between nodes in a graph like structure 
      * using an heuristic intuitive logic.
-     * The heuristic is what differs from a simple Dijkstra algorithm since it allows us to see the remaining
-     * distance from the node we are aiming for as well as the distance from each node to another, 
+     * The heuristic is what differs from a simple Dijkstra algorithm. It allows us to see the remaining
+     * distance from the node we are aiming for as well as the distance from each node to another (originaly on Dijkstra), 
      * therefore allowing us to decide which node we will check in priority.
-     * 
-     * @return List<Action>
      */
     @Override
     public List<Action> plan() {
@@ -72,6 +104,7 @@ public class AStarPlanner implements Planner {
         father.put(this.initialState, null);
         distance.put(this.initialState, Float.valueOf(0));
         value.put(this.initialState,this.heuristic.estimate(this.initialState));
+
         while (!(open.isEmpty())) {
             this.nbNodes++;
             Map<Variable, Object> instantiation = argmin(distance, open);

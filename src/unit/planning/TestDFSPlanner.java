@@ -5,7 +5,7 @@ import planningtests.DFSPlannerTests;
 /**
  * Class containing all functions to tests all functions of the class DFSPlanner.
  * 
- * @author Kenzo LECOINDRE
+ * @author Kenzo Lecoindre
  */
 public class TestDFSPlanner 
 {
