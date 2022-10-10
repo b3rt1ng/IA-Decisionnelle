@@ -40,5 +40,6 @@
         <jar jarfile="executable.jar" basedir="${projet.bin.dir}" manifest="${basedir}/MANIFEST.MF"/>
     </target> 
     
+    
     -->
 </project>
