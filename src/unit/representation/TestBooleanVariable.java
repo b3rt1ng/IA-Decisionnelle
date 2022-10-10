@@ -5,7 +5,7 @@ import representationtests.BooleanVariableTests;
 /**
  * Class containing all functions to tests all functions of the class BooleanVariable.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestBooleanVariable
 {

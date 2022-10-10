@@ -5,7 +5,7 @@ import planningtests.AStarPlannerTests;
 /**
  * Class containing all functions to tests all functions of the class AStarPlanner.
  * 
- * @author Antoine Collenot
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestAStarPlanner 
 {

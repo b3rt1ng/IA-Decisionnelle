@@ -5,7 +5,7 @@ import planningtests.DijkstraPlannerTests;
 /**
  * Class containing all functions to tests all functions of the class DjikstraPlanner.
  * 
- * @author Antoine Collenot
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestDijkstraPlanner
 {

@@ -5,7 +5,7 @@ import representationtests.UnaryConstraintTests;
 /**
  * Class containing all functions to tests all functions of the class UnaryConstraint.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestUnaryConstraint 
 {

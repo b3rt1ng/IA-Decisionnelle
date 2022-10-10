@@ -1,2 +1,3 @@
 *.class
 doc/
+src/csp/ # ...to be returned later

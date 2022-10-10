@@ -5,7 +5,7 @@ import representationtests.DifferenceConstraintTests;
 /**
  * Class containing all functions to tests all functions of the class DifferenceConstraint.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class TestDifferenceConstraint 
 {
