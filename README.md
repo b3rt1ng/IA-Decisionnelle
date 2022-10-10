@@ -1,3 +1,6 @@
+# important, on rend seulement le readme.txt et pas celui là, on pensera aussi à retier le package csp
+
+
 | n° | Note |
 | --- | --- |
 | 1 | Faire les javadoc en même temps que nos classes (on gagnera du temps) |  
