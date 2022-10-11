@@ -19,12 +19,12 @@ public class BacktrackSolver extends AbstractSolver {
             return parsInst;
         Variable xi = unvars.poll();
         for (Object vi : xi.getDomain()) {
-            Map<Variable, Object> N = new HashMap<>(parsInst);
-            N.put(xi, vi);
-            if (isConsistent(N)) {
-                Map<Variable, Object> R = bt(N, unvars);
-                if (R!=null) {
-                    return R;
+            Map<Variable, Object> n = new HashMap<>(parsInst);
+            n.put(xi, vi);
+            if (isConsistent(n)) {
+                Map<Variable, Object> r = bt(n, unvars);
+                if (r!=null) {
+                    return r;
                 }
             }
         }
