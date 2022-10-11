@@ -14,16 +14,16 @@ public class BacktrackSolver extends AbstractSolver {
         super(variables, contraintes);
     }
 
-    public Map<Variable, Object> BT(Map<Variable, Object> ParsInst, LinkedList<Variable> unvars) {
+    public Map<Variable, Object> bt(Map<Variable, Object> parsInst, LinkedList<Variable> unvars) {
         if (unvars.isEmpty())
-            return ParsInst;
+            return parsInst;
         Variable xi = unvars.poll();
         for (Object vi : xi.getDomain()) {
-            Map<Variable, Object> N = new HashMap<>();
+            Map<Variable, Object> N = new HashMap<>(parsInst);
             N.put(xi, vi);
             if (isConsistent(N)) {
-                Map<Variable, Object> R = BT(N, unvars);
-                if (!R.equals(null)) {
+                Map<Variable, Object> R = bt(N, unvars);
+                if (R!=null) {
                     return R;
                 }
             }
@@ -34,7 +34,7 @@ public class BacktrackSolver extends AbstractSolver {
 
     @Override
     public Map<Variable, Object> solve() {
-        Map<Variable, Object> ParsInst = new HashMap<>(); //instantiation partielle
-        return BT(ParsInst, new LinkedList<>(this.variables));
+        Map<Variable, Object> parsInst = new HashMap<>();
+        return bt(parsInst, new LinkedList<>(this.variables));
     }
 }

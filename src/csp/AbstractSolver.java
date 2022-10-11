@@ -24,6 +24,6 @@ public abstract class AbstractSolver implements Solver {
                     return false;
             }
         }
-        return false;
+        return true;
     }
 }
