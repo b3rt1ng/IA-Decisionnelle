@@ -20,8 +20,8 @@ public abstract class AbstractSolver implements Solver {
     public boolean isConsistent(Map<Variable, Object> affectation) {
         for (Constraint constraint : this.contraintes) {
             if (affectation.keySet().containsAll(constraint.getScope())){
-                if(constraint.isSatisfiedBy(affectation))
-                    return true;
+                if(!constraint.isSatisfiedBy(affectation))
+                    return false;
             }
         }
         return false;
