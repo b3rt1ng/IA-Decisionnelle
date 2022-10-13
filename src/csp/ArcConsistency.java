@@ -2,6 +2,7 @@ package csp;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import representation.Constraint;
@@ -31,51 +32,93 @@ public class ArcConsistency
 
     public boolean enforceNodeConsistency(Map<Variable, Set<Object>> ensDomaines)
     {
-        boolean finalBool = true;
-        Map<Variable, Set<Object>> ensDomainesFinal = new HashMap<>();
+        boolean bool = true;
 
         for(Variable var : ensDomaines.keySet())
         {
-            boolean bool = true;
+            HashSet<Object> domainToDelete = new HashSet<>();
             for(Object o : ensDomaines.get(var))
             {
-                Map<Variable, Object> domaine = new HashMap<>();
-                domaine.put(var, o);
+                Map<Variable, Object> domain = new HashMap<>();
+                domain.put(var, o);
                 
                 for(Constraint c : this.ensConstraints)
-                {
-                    if(!c.isSatisfiedBy(domaine))
-                    {
-                        bool = false;
-                        break;
-                    }
-                }
-
-                if(!bool)
-                    break;
-                
+                    if(c.getScope().size() == 1 && c.getScope().contains(var) && !c.isSatisfiedBy(domain))
+                        domainToDelete.add(o);
             }
 
-            finalBool = finalBool && bool;
-            if(bool)
-                ensDomainesFinal.put(var, ensDomaines.get(var));
+            ensDomaines.get(var).removeAll(domainToDelete);
+            if(ensDomaines.get(var).isEmpty())
+                bool = false;
         }
-        ensDomaines = ensDomainesFinal;
 
-        return finalBool;
+        return bool;
     }
 
     public boolean revise(Variable v1, Set<Object> d1, Variable v2, Set<Object> d2)
     {
         boolean del = false;
+        Set<Object> ensSuppr = new HashSet<>();
 
-        
+        for(Object vi : d1)
+        {
+            boolean viable = false;
+            for(Object vj : d2)
+            {
+                boolean toutSatisfait = true;
+                for(Constraint c : this.ensConstraints)
+                {
+                    HashMap<Variable, Object> n = new HashMap<>();
+                    n.put(v1, vi);
+                    n.put(v2, vj);
+                    if(!c.isSatisfiedBy(n))
+                    {
+                        toutSatisfait = false;
+                        break;
+                    }
+                }
+                if(toutSatisfait)
+                {
+                    viable = true;
+                    break;
+                }
+            }
+            if(!viable)
+            {
+                ensSuppr.add(vi);
+                del = true;
+            }
+        }
+        d1.removeAll(ensSuppr);
 
         return del;
     }
-
+    
     public boolean ac1(Map<Variable, Set<Object>> ensDomaines)
     {
+        System.err.println("ok");
+        if(!enforceNodeConsistency(ensDomaines))
+            return false;
+
+        boolean change = false;
+        Set<Variable> ensKey = ensDomaines.keySet();
+        do
+        {
+            for(Variable xi : ensKey)
+            {
+                for(Variable xj : ensKey)
+                {
+                    if(!(xi.equals(xj)) && revise(xi, ensDomaines.get(xi), xj, ensDomaines.get(xj)))
+                        change = true;
+                }
+            }
+        }
+        while(change);
+
+        for(Variable v : ensDomaines.keySet())
+            if(ensDomaines.get(v).size() == 0)
+                return false;
+
         return true;
     }
 
