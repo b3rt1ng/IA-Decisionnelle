@@ -6,6 +6,8 @@ import unit.planning.TestBasicGoal;
 import unit.planning.TestDFSPlanner;
 import unit.planning.TestDijkstraPlanner;
 import unit.representation.*;
+import unit.csp.TestAbstractSolver;
+import unit.csp.TestBacktrackSolver;
 
 /**
  * Class containing all functions to tests all classes of the project.
@@ -59,9 +61,11 @@ public class MainUnit
         ok = ok && TestArcConsistency.allTests();
         System.out.println("");
         
-        //Test Solvers
-
-
+        //Test CSP
+        ok = ok && TestAbstractSolver.allTests();
+        System.out.println("");
+        ok = ok && TestBacktrackSolver.allTests();
+        System.out.println("");
 
         return ok;
     }
