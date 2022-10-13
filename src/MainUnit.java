@@ -57,7 +57,8 @@ public class MainUnit
 
         //Test ArcConsistency
         ok = ok && TestArcConsistency.allTests();
-
+        System.out.println("");
+        
         //Test Solvers
 
 

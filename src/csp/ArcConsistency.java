@@ -68,13 +68,17 @@ public class ArcConsistency
                 boolean toutSatisfait = true;
                 for(Constraint c : this.ensConstraints)
                 {
-                    HashMap<Variable, Object> n = new HashMap<>();
-                    n.put(v1, vi);
-                    n.put(v2, vj);
-                    if(!c.isSatisfiedBy(n))
+                    Set<Variable> scope = c.getScope();
+                    if(scope.size() == 2 && scope.contains(v1) && scope.contains(v2)) 
                     {
-                        toutSatisfait = false;
-                        break;
+                        HashMap<Variable, Object> n = new HashMap<>();
+                        n.put(v1, vi);
+                        n.put(v2, vj);
+                        if(!c.isSatisfiedBy(n))
+                        {
+                            toutSatisfait = false;
+                            break;
+                        }
                     }
                 }
                 if(toutSatisfait)
@@ -96,14 +100,14 @@ public class ArcConsistency
     
     public boolean ac1(Map<Variable, Set<Object>> ensDomaines)
     {
-        System.err.println("ok");
         if(!enforceNodeConsistency(ensDomaines))
             return false;
 
-        boolean change = false;
+        boolean change;
         Set<Variable> ensKey = ensDomaines.keySet();
         do
         {
+            change = false;
             for(Variable xi : ensKey)
             {
                 for(Variable xj : ensKey)
