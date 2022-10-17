@@ -38,6 +38,10 @@ public class MainUnitPlanning implements IsTestable
         ok = ok && testAStarPlanner.allTests();
         System.out.println("");
 
+        System.out.println(ok ? " All tests of the package 'planning' are OK " : " At least one test of the package 'planning' is KO " );
+        System.out.println("");
+        System.out.println("");
+        
         return ok;
     }
 }

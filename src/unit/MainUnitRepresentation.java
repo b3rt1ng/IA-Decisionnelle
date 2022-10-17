@@ -32,6 +32,10 @@ public class MainUnitRepresentation implements IsTestable
         TestUnaryConstraint testUnaryConstraint = new TestUnaryConstraint();
         ok = ok && testUnaryConstraint.allTests();
         System.out.println("");
+
+        System.out.println(ok ? " All tests of the package 'representation' are OK " : " At least one test of the package 'representation' is KO " );
+        System.out.println("");
+        System.out.println("");
         
         return ok;
     }
