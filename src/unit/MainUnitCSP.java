@@ -37,11 +37,14 @@ public class MainUnitCSP implements IsTestable
         TestRandomValueHeuristic testRandomValueHeuristic = new TestRandomValueHeuristic();
         ok = ok && testRandomValueHeuristic.allTests();
         System.out.println("");
+        TestHeuristicMACSolver testHeuristicMACSolver = new TestHeuristicMACSolver();
+        ok = ok && testHeuristicMACSolver.allTests();
+        System.out.println("");
 
         System.out.println(ok ? " All tests of the package 'csp' are OK " : " At least one test of the package 'csp' is KO " );
         System.out.println("");
         System.out.println("");
-        
+
         return ok;
     }
 }
