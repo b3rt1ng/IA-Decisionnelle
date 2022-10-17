@@ -14,12 +14,7 @@ public class MainUnitCSP implements IsTestable
     {
         boolean ok = true;
 
-        //Test ArcConsistency
-        TestArcConsistency testArcConsistency = new TestArcConsistency();
-        ok = ok && testArcConsistency.allTests();
-        System.out.println("");
-        
-        //Test CSP
+        //Tests Backtrack
         TestAbstractSolver testAbstractSolver = new TestAbstractSolver();
         ok = ok && testAbstractSolver.allTests();
         System.out.println("");
@@ -27,6 +22,26 @@ public class MainUnitCSP implements IsTestable
         ok = ok && testBacktrackSolver.allTests();
         System.out.println("");
 
+        //Tests Coherence d'arc et MAC
+        TestArcConsistency testArcConsistency = new TestArcConsistency();
+        ok = ok && testArcConsistency.allTests();
+        System.out.println("");
+        
+        //Tests Heuristiques
+        TestNbConstraintsVariableHeuristic testNbConstraintsVariableHeuristic = new TestNbConstraintsVariableHeuristic();
+        ok = ok && testNbConstraintsVariableHeuristic.allTests();
+        System.out.println("");
+        TestDomainSizeVariableHeuristic testDomainSizeVariableHeuristic = new TestDomainSizeVariableHeuristic();
+        ok = ok && testDomainSizeVariableHeuristic.allTests();
+        System.out.println("");
+        TestRandomValueHeuristic testRandomValueHeuristic = new TestRandomValueHeuristic();
+        ok = ok && testRandomValueHeuristic.allTests();
+        System.out.println("");
+
+        System.out.println(ok ? " All tests of the package 'csp' are OK " : " At least one test of the package 'csp' is KO " );
+        System.out.println("");
+        System.out.println("");
+        
         return ok;
     }
 }
