@@ -1,77 +1,36 @@
-import unit.csp.TestArcConsistency;
-import unit.planning.TestAStarPlanner;
-import unit.planning.TestBFSPlanner;
-import unit.planning.TestBasicAction;
-import unit.planning.TestBasicGoal;
-import unit.planning.TestDFSPlanner;
-import unit.planning.TestDijkstraPlanner;
-import unit.representation.*;
-import unit.csp.TestAbstractSolver;
-import unit.csp.TestBacktrackSolver;
+import unit.*;
 
 /**
  * Class containing all functions to tests all classes of the project.
  * 
  * @author Kenzo LECOINDRE
  */
-public class MainUnit
+public class MainUnit implements IsTestable
 {
     /**
-     * Launch all the tests that this class concern.
+     * Launch all the tests of each packages.
      * 
      * @return true if all tests are ok, false otherwhise.
      */
-    public static boolean allTests()
+    public boolean allTests()
     {
         boolean ok = true;
 
-        //Test Variables
-        ok = ok && TestVariable.allTests();
-        System.out.println("");
-        ok = ok && TestBooleanVariable.allTests();
-        System.out.println("");
+        //test representation
+        ok = ok && new MainUnitRepresentation().allTests();
 
-        //Test Contraintes
-        ok = ok && TestDifferenceConstraint.allTests();
-        System.out.println("");
-        ok = ok && TestImplication.allTests();
-        System.out.println("");
-        ok = ok && TestUnaryConstraint.allTests();
-        System.out.println("");
-        
-        //Test Action
-        ok = ok && TestBasicAction.allTests();
-        System.out.println("");
+        //test planning
+        ok = ok && new MainUnitPlanning().allTests();
 
-        //Test Goal
-        ok = ok && TestBasicGoal.allTests();
-        System.out.println("");
-        
-        //Test Planners
-        ok = ok && TestDFSPlanner.allTests();
-        System.out.println("");
-        ok = ok && TestBFSPlanner.allTests();
-        System.out.println("");
-        ok = ok && TestDijkstraPlanner.allTests();
-        System.out.println("");
-        ok = ok && TestAStarPlanner.allTests();
-        System.out.println("");
-
-        //Test ArcConsistency
-        ok = ok && TestArcConsistency.allTests();
-        System.out.println("");
-        
-        //Test CSP
-        ok = ok && TestAbstractSolver.allTests();
-        System.out.println("");
-        ok = ok && TestBacktrackSolver.allTests();
-        System.out.println("");
+        //test csp
+        ok = ok && new MainUnitCSP().allTests();
 
         return ok;
     }
 
     public static void main(String[] args) 
     {   
-        System.out.print(MainUnit.allTests() ? " All tests of classes are OK " : " At least one test of the class is KO " );
+        MainUnit mainUnit = new MainUnit();
+        System.out.print(mainUnit.allTests() ? " All tests of classes are OK " : " At least one test of the class is KO " );
     }
 }
