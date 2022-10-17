@@ -1,20 +1,21 @@
 package unit.planning;
 
-import planningtests.BasicActionTests ;
+import planningtests.BasicActionTests;
+import unit.IsTestable;
 
 /**
  * Class containing all functions to tests all functions of the class BasicAction.
  * 
  * @author Antoine Collenot, Kenzo Lecoindre
  */
-public class TestBasicAction 
+public class TestBasicAction implements IsTestable
 {
     /**
      * Launch all the tests concerning this class.
      * 
      * @return true if all tests are ok, false otherwhise.
      */
-    public static boolean allTests()
+    public boolean allTests()
     {
         boolean ok = true;
 

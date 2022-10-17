@@ -12,12 +12,14 @@ import representation.Variable;
 public class MACSolver extends AbstractSolver {
 
     public MACSolver(Set<Variable> variables, Set<Constraint> constraints) {
-        super(variables, contraintes);   
+        super(variables, constraints);   
     }
 
+    //A finir
     @Override
-    public Map<Variable, Object> Solve() {
+    public Map<Variable, Object> solve() {
         Map<Variable, Object> parsInst = new HashMap<>();
         LinkedList<Variable> unvars = new LinkedList<>(this.variables);
+        return null;
     }
 }

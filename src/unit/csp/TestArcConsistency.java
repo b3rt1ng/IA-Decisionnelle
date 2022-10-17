@@ -1,10 +1,11 @@
 package unit.csp;
 
 import csptests.ArcConsistencyTests;
+import unit.IsTestable;
 
-public class TestArcConsistency 
+public class TestArcConsistency implements IsTestable
 {
-    public static boolean allTests()
+    public boolean allTests()
     {
         boolean ok = true;
 

@@ -1,6 +1,7 @@
 package unit.csp;
 
 import csptests.BacktrackSolverTests;
+import unit.IsTestable;
 
 /**
  * Class containing all functions to tests all functions of the class SolverTests.
@@ -8,14 +9,14 @@ import csptests.BacktrackSolverTests;
  * @author Antoine Collenot, Kenzo Lecoindre
  */
 
-public class TestBacktrackSolver 
+public class TestBacktrackSolver implements IsTestable
 {
     /**
      * Launch all the tests concerning this class.
      * 
      * @return true if all tests are ok, false otherwhise.
      */
-    public static boolean allTests()
+    public boolean allTests()
     {
         boolean ok = true;
 
