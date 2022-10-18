@@ -1,5 +1,6 @@
 package csp;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ public class HeuristicMACSolver extends AbstractSolver
     private VariableHeuristic variableHeuristic;
     private ValueHeuristic valueHeuristic;
 
-    HeuristicMACSolver(Set<Variable> variables, Set<Constraint> contraintes, VariableHeuristic variableHeuristic, ValueHeuristic valueHeuristic)
+    public HeuristicMACSolver(Set<Variable> variables, Set<Constraint> contraintes, VariableHeuristic variableHeuristic, ValueHeuristic valueHeuristic)
     {
         super(variables, contraintes);
         this.variableHeuristic = variableHeuristic;
@@ -21,6 +22,23 @@ public class HeuristicMACSolver extends AbstractSolver
     @Override
     public Map<Variable, Object> solve() 
     {
+        Map<Variable, Set<Object>> domains = new HashMap<Variable, Set<Object>>();
+        for (Variable var : this.variables) {
+            domains.put(var, var.getDomain());
+        }
+
+        for(int i=0 ; i<domains.size() ; i++)
+        {
+            HashMap<Variable, Object> affectation = new HashMap<Variable, Object>();
+            Variable v = this.variableHeuristic.best(domains.keySet(), domains);
+            affectation.put(v, this.valueHeuristic.ordering(v, domains.get(v)));
+
+            if(isConsistent(affectation))
+                return affectation;
+
+            domains.remove(v);
+        }
+        
         return null;
     }
 }
