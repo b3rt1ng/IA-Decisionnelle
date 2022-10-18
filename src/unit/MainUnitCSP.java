@@ -26,6 +26,9 @@ public class MainUnitCSP implements IsTestable
         TestArcConsistency testArcConsistency = new TestArcConsistency();
         ok = ok && testArcConsistency.allTests();
         System.out.println("");
+        TestMACSolver testMACSolver = new TestMACSolver();
+        ok = ok && testMACSolver.allTests();
+        System.out.println("");
         
         //Tests Heuristiques
         TestNbConstraintsVariableHeuristic testNbConstraintsVariableHeuristic = new TestNbConstraintsVariableHeuristic();

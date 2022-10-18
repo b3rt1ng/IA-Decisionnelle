@@ -20,17 +20,30 @@ public class MACSolver extends AbstractSolver {
     
     @Override
     public Map<Variable, Object> solve() {
+        Map<Variable, Object> parsInst = new HashMap<>(); //instantiation partielle
         Map<Variable, Set<Object>> ensDomaines = new HashMap<>();
-        Map<Variable, Object> parsInst = new HashMap<>();
-        LinkedList<Variable> unvars = new LinkedList<>(this.variables);
+        return mac(parsInst, new LinkedList<>(this.variables), ensDomaines);
+    }
+
+    public Map<Variable, Object> mac(Map<Variable, Object> parsInst, LinkedList<Variable> unvars, Map<Variable, Set<Object>> ensDomaines) {
         if (unvars.isEmpty()) {
             return parsInst;
         } else {
-            if (!ac.ac1(ensDomaines)) {
+            if (!ac.ac1(ensDomaines))
                 return null;
+            Variable xi = unvars.poll();
+            for (Object vi : xi.getDomain()) {
+                Map<Variable, Object> n = new HashMap<>(parsInst);
+                n.put(xi, vi);
+                if (isConsistent(n)) {
+                    Map<Variable, Object> r = mac(n, unvars, ensDomaines);
+                    if (r!=null) {
+                        return r;
+                    }
+                }
             }
+            unvars.add(xi);
+            return null;
         }
-        return null;
     }
-    // temporaire
 }
