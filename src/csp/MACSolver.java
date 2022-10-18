@@ -11,15 +11,26 @@ import representation.Variable;
 
 public class MACSolver extends AbstractSolver {
 
-    public MACSolver(Set<Variable> variables, Set<Constraint> constraints) {
-        super(variables, constraints);   
-    }
+    private ArcConsistency ac;
 
-    //A finir
+    public MACSolver(Set<Variable> variables, Set<Constraint> constraints) {
+        super(variables, constraints);
+        this.ac = new ArcConsistency(constraints);
+    }
+    
     @Override
     public Map<Variable, Object> solve() {
+        Map<Variable, Set<Object>> ensDomaines = new HashMap<>();
         Map<Variable, Object> parsInst = new HashMap<>();
         LinkedList<Variable> unvars = new LinkedList<>(this.variables);
+        if (unvars.isEmpty()) {
+            return parsInst;
+        } else {
+            if (!ac.ac1(ensDomaines)) {
+                return null;
+            }
+        }
         return null;
     }
+    // temporaire
 }
