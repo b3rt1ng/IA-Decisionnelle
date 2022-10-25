@@ -50,8 +50,22 @@ public class Apriori extends AbstractItemsetMiner {
         return null;
     }
 
-    // public static void allSubsetsFrequent(Set<BooleanVariable> ensemble, Collection<SortedSet<BooleanVariable>> colEnsemble)
+    public static Boolean allSubsetsFrequent(Set<BooleanVariable> ensemble, Collection<SortedSet<BooleanVariable>> colEnsemble) {
 
+        TreeSet<BooleanVariable> temp = new TreeSet<BooleanVariable>(COMPARATOR);
+        temp.addAll(ensemble);
+
+        for (BooleanVariable it : ensemble) {
+            temp.remove(it);
+            if (!colEnsemble.contains(temp)) {
+                return false;
+            }
+            temp.add(it);
+        }
+        return true;
+    }
+
+    // exo 10
     @Override
     public Set<Itemset> extract(float minFrequency) {
         // TODO Auto-generated method stub
