@@ -21,8 +21,6 @@ public class TestAStarPlanner implements IsTestable
 
         ok = ok && AStarPlannerTests.testPlan();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     } 
 

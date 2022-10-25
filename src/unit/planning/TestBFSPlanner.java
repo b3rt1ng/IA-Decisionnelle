@@ -21,8 +21,6 @@ public class TestBFSPlanner implements IsTestable
 
         ok = ok && BFSPlannerTests.testPlan();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     }
 }

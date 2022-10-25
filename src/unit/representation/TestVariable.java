@@ -22,8 +22,6 @@ public class TestVariable implements IsTestable
         ok = ok && VariableTests.testEquals();
         ok = ok && VariableTests.testHashCode();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     }
 }

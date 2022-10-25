@@ -22,8 +22,6 @@ public class TestMACSolver implements IsTestable
 
         ok = ok && MACSolverTests.testSolve();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     } 
 

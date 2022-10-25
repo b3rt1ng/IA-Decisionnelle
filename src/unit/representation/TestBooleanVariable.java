@@ -23,8 +23,6 @@ public class TestBooleanVariable implements IsTestable
         ok = ok && BooleanVariableTests.testEquals();
         ok = ok && BooleanVariableTests.testHashCode();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     }
 }
