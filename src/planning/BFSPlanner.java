@@ -7,13 +7,12 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-
 import representation.Variable;
 
 /**
  * Class representing a planner using Breadth-first search.
  * 
- * @author Kenzo LECOINDRE
+ * @author Kenzo LECOINDRE, Antoine Collenot
  */
 public class BFSPlanner implements Planner
 {
@@ -65,7 +64,7 @@ public class BFSPlanner implements Planner
     public List<Action> getBfsPlan(Map<Map<Variable, Object>, Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Map<Variable, Object> goal)
     {
         LinkedList<Action> res = new LinkedList<>();
-        while(goal != this.initialState)
+        while(goal != this.initialState && goal != null)
         {
             res.add(plan.get(goal));
             goal = father.get(goal);

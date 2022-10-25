@@ -39,7 +39,7 @@ public class Apriori extends AbstractItemsetMiner {
 
         if (firstEns.size() == secondEns.size() && firstEns.size()!=0){
             if (firstEns.headSet(firstEns.last()).equals(secondEns.headSet(secondEns.last()))) {
-                if (firstEns.last().equals(secondEns.last())) {
+                if (!firstEns.last().equals(secondEns.last())) {
                     SortedSet<BooleanVariable> result = new TreeSet<BooleanVariable>(COMPARATOR);
                     result.addAll(firstEns);
                     result.addAll(secondEns);
@@ -68,7 +68,7 @@ public class Apriori extends AbstractItemsetMiner {
     // exo 10
     @Override
     public Set<Itemset> extract(float minFrequency) {
-        // TODO Auto-generated method stub
+        TreeSet<BooleanVariable> result = new TreeSet<BooleanVariable>(COMPARATOR);
         return null;
     }
 

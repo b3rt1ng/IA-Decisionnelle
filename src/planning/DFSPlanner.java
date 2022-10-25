@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import representation.Variable;
 
@@ -60,7 +61,7 @@ public class DFSPlanner implements Planner
      * 
      * @return A list of actions representing the actions to do to go to the goal from the initial state given.
      */
-    private List<Action> dfs(Map<Variable, Object> state, List<Action> result, Set<Map<Variable, Object>> alreadyExplored)
+    private Stack<Action> dfs(Map<Variable, Object> state, Stack<Action> result, Set<Map<Variable, Object>> alreadyExplored)
     {
         this.nbNodes++;
         
@@ -69,12 +70,20 @@ public class DFSPlanner implements Planner
 
         for(Action action : this.actions)
         {
-            if(action.isApplicable(state) && !alreadyExplored.contains(state))
+            if(action.isApplicable(state))
             {
                 Map<Variable, Object> newState = action.successor(state);
-                alreadyExplored.add(state);
-                result.add(action);
-                return dfs(newState, result, alreadyExplored);
+                if(!alreadyExplored.contains(newState))
+                {
+                    alreadyExplored.add(newState);
+                    result.push(action);
+                    Stack<Action> subplan = dfs(newState, result, alreadyExplored);
+                    if(subplan != null) {
+                        return subplan;
+                    } else {
+                        result.pop();
+                    }
+                }
             }
         }
 
@@ -85,7 +94,9 @@ public class DFSPlanner implements Planner
     public List<Action> plan()
     {
         this.nbNodes = 0;
-        return dfs(this.initialState, new ArrayList<>(), new HashSet<Map<Variable, Object>>());
+        HashSet<Map<Variable, Object>> alreadyExplored = new HashSet<Map<Variable, Object>>();
+        alreadyExplored.add(initialState);
+        return dfs(this.initialState, new Stack<Action>(), alreadyExplored);
     }
 
     @Override

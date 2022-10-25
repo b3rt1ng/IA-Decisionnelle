@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * Class implementing an A* algorythm.
@@ -83,6 +85,18 @@ public class AStarPlanner implements Planner {
         return res;
     }
 
+    public List<Action> getBfsPlan(Map<Map<Variable, Object>, Map<Variable, Object>> father, Map<Map<Variable, Object>, Action> plan, Map<Variable, Object> goal) {
+
+        LinkedList<Action> res = new LinkedList<>();
+        while(goal != this.initialState && goal != null) {
+
+            res.add(plan.get(goal));
+            goal = father.get(goal);
+        }
+
+        Collections.reverse(res);
+        return res;
+    }
     
     /** 
      * Implementation of the A* algorithm to find the shortest path between nodes in a graph like structure 
@@ -99,7 +113,6 @@ public class AStarPlanner implements Planner {
         Map<Map<Variable, Object>, Map<Variable,Object>> father = new HashMap<>();
         Map<Map<Variable, Object>, Float> value = new HashMap<>();
         Set<Map<Variable, Object>> open = new HashSet<>();
-        BFSPlanner bfs = new BFSPlanner(this.initialState,this.actions,this.goal);
         open.add(this.initialState);
         father.put(this.initialState, null);
         distance.put(this.initialState, Float.valueOf(0));
@@ -109,7 +122,7 @@ public class AStarPlanner implements Planner {
             this.nbNodes++;
             Map<Variable, Object> instantiation = argmin(distance, open);
             if (this.goal.isSatisfiedBy(instantiation)) {
-                return bfs.getBfsPlan(father,plan,instantiation);
+                return getBfsPlan(father,plan,instantiation);
             } else {
                 open.remove(instantiation);
                 for (Action action : this.actions) {
