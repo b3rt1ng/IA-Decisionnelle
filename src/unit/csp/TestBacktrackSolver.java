@@ -22,8 +22,6 @@ public class TestBacktrackSolver implements IsTestable
 
         ok = ok && BacktrackSolverTests.testSolve();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     } 
 

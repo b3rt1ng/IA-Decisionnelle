@@ -31,6 +31,6 @@ public class MainUnit implements IsTestable
     public static void main(String[] args) 
     {   
         MainUnit mainUnit = new MainUnit();
-        System.out.println(mainUnit.allTests() ? " All tests of all packages are OK " : " At least one test of a package is KO " );
+        System.err.println(mainUnit.allTests() ? " All tests of all packages are OK " : " At least one test of a package is KO " );
     }
 }

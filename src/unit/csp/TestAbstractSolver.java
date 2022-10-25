@@ -22,8 +22,6 @@ public class TestAbstractSolver implements IsTestable
 
         ok = ok && AbstractSolverTests.testIsConsistent();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     } 
 

@@ -17,25 +17,25 @@ public class MainUnitRepresentation implements IsTestable
         //Test Variables
         TestVariable testVariable = new TestVariable();
         ok = ok && testVariable.allTests();
-        System.out.println("");
+        System.err.println("");
         TestBooleanVariable testBooleanVariable = new TestBooleanVariable();
         ok = ok && testBooleanVariable.allTests();
-        System.out.println("");
+        System.err.println("");
 
         //Test Contraintes
         TestDifferenceConstraint testDifferenceConstraint = new TestDifferenceConstraint();
         ok = ok && testDifferenceConstraint.allTests();
-        System.out.println("");
+        System.err.println("");
         TestImplication testImplication = new TestImplication();
         ok = ok && testImplication.allTests();
-        System.out.println("");
+        System.err.println("");
         TestUnaryConstraint testUnaryConstraint = new TestUnaryConstraint();
         ok = ok && testUnaryConstraint.allTests();
-        System.out.println("");
+        System.err.println("");
 
-        System.out.println(ok ? " All tests of the package 'representation' are OK " : " At least one test of the package 'representation' is KO " );
-        System.out.println("");
-        System.out.println("");
+        System.err.println(ok ? " All tests of the package 'representation' are OK " : " At least one test of the package 'representation' is KO " );
+        System.err.println("");
+        System.err.println("");
         
         return ok;
     }

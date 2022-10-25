@@ -22,8 +22,6 @@ public class TestUnaryConstraint implements IsTestable
         ok = ok && UnaryConstraintTests.testGetScope();
         ok = ok && UnaryConstraintTests.testIsSatisfiedBy();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     }
 }

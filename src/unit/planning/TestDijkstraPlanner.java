@@ -21,8 +21,6 @@ public class TestDijkstraPlanner implements IsTestable
 
         ok = ok && DijkstraPlannerTests.testPlan();
 
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
         return ok;
     }    
 }

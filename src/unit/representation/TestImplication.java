@@ -21,9 +21,7 @@ public class TestImplication implements IsTestable
 
         ok = ok && ImplicationTests.testGetScope();
         ok = ok && ImplicationTests.testIsSatisfiedBy();
-
-        System.out.println(ok ? " All tests OK " : " At least one test KO " );
-
+        
         return ok;
     }    
 }
