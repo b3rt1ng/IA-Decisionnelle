@@ -5,7 +5,7 @@ import java.util.HashSet;
 /**
  * Class representing a variable.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class BooleanVariable extends Variable
 {
