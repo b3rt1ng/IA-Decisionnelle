@@ -8,12 +8,31 @@ import java.util.LinkedList;
 import representation.Constraint;
 import representation.Variable;
 
+/**
+ * Class representing a BacktrackSolver.
+ * 
+ * @author Antoine Collenot, Kenzo Lecoindre
+ */
 public class BacktrackSolver extends AbstractSolver {
     
+    /**
+     * Constructor for the BacktrackSolver class.
+     * 
+     * @param variables A set of variables.
+     * @param contraintes A set of constraints.
+     */
     public BacktrackSolver(Set<Variable> variables, Set<Constraint> contraintes) {
         super(variables, contraintes);
     }
 
+    
+    /** 
+     * Method that implements the Backtrack algorithm.
+     * 
+     * @param parsInst a partial affectation of the variables.
+     * @param unvars the set of unassigned variables.
+     * @return A solution extending the partial affectation, or null if no solution exists.
+     */
     public Map<Variable, Object> bt(Map<Variable, Object> parsInst, LinkedList<Variable> unvars) {
         if (unvars.isEmpty())
             return parsInst;
