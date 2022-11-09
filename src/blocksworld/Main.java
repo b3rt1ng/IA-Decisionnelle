@@ -1,5 +1,12 @@
 package blocksworld;
 
+import javax.swing.JFrame;
+
+import bwmodel.BWState;
+import bwmodel.BWStateBuilder;
+
+import bwui.BWIntegerGUI;
+
 import representation.Variable;
 
 public class Main 
@@ -7,6 +14,8 @@ public class Main
     public static void main(String[] args) 
     {
         System.out.println("Hello World!");
+
+        /*
 
         // Building state
         int n = 5;
@@ -26,9 +35,13 @@ public class Main
 
         // Displaying
         BWIntegerGUI gui = new BWIntegerGUI(n);
-        JFrame frame = new JFrame(title);
+        JFrame frame = new JFrame("title");
         frame.add(gui.getComponent(state));
         frame.pack();
         frame.setVisible(true);
+
+        */
+
+        
     }    
 }
