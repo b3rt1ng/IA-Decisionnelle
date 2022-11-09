@@ -52,7 +52,7 @@ public class HeuristicMACSolver extends AbstractSolver
     {
         Map<Variable, Set<Object>> ensDomaines = new HashMap<>();
 
-        for(Variable v: this.variables)
+        for(Variable v : this.variables)
             ensDomaines.put(v, v.getDomain());
 
         return macHeuristic(new HashMap<>(), new HashSet<>(this.variables), ensDomaines);
@@ -69,7 +69,7 @@ public class HeuristicMACSolver extends AbstractSolver
         Variable xi = this.variableHeuristic.best(unvars, ensDomaines);
         unvars.remove(xi);
 
-        for(Object vi: this.valueHeuristic.ordering(xi, ensDomaines.get(xi))) 
+        for(Object vi : this.valueHeuristic.ordering(xi, ensDomaines.get(xi))) 
         {
             Map<Variable, Object> tmpRes = new HashMap<>(res);
             tmpRes.put(xi, vi);
