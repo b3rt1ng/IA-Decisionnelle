@@ -12,9 +12,6 @@ import representation.Variable;
  * @author Antoine Collenot, Kenzo Lecoindre
  */
 
-/**
- * 
- */
 public abstract class AbstractSolver implements Solver {
     
     /**
