@@ -8,10 +8,18 @@ import java.util.TreeSet;
 
 import representation.BooleanVariable;
 
-// j'en suis à l'exo 8
-
+/**
+ * Class representing an "Apriori".
+ * 
+ * @author Pierre
+ */
 public class Apriori extends AbstractItemsetMiner {
 
+    /**
+     * Constructor for the Apriori class.
+     * 
+     * @param base A boolean database.
+     */
     public Apriori(BooleanDatabase base) {
         super(base);
     }
@@ -22,7 +30,6 @@ public class Apriori extends AbstractItemsetMiner {
      * @param frequency The frequency to at least surpass
      * @return a set of Itemset that are equally frequent or more than a givent frequency
      */
-
     public Set<Itemset> frequentSingletons(float frequency) {
 
         Set<Itemset> result = new HashSet<Itemset>();
@@ -35,6 +42,16 @@ public class Apriori extends AbstractItemsetMiner {
         return result;
     }
 
+    /**
+     * This method will return the combination of the two given itemset if the following conditions are valid:
+     *  -the two sets have the same size k
+     *  -the two sets have the same k − 1 first items
+     *  -the two sets have k different items
+     * 
+     * @param firstEns The first set of items
+     * @param secondEns The second set of items
+     * @return a sorted set of items matching the three required conditions or null if the conditions are not met
+     */
     public static SortedSet<BooleanVariable> combine(SortedSet<BooleanVariable> firstEns, SortedSet<BooleanVariable> secondEns) {
 
         if (firstEns.size() == secondEns.size() && firstEns.size()!=0){
@@ -50,6 +67,12 @@ public class Apriori extends AbstractItemsetMiner {
         return null;
     }
 
+    /**
+     * 
+     * @param ensemble A set of items
+     * @param colEnsemble A collection of sets of items
+     * @return true if all subsets obtained by deleting exactly one element of the set of items are contained in the collection, false otherwise
+     */
     public static Boolean allSubsetsFrequent(Set<BooleanVariable> ensemble, Collection<SortedSet<BooleanVariable>> colEnsemble) {
 
         TreeSet<BooleanVariable> temp = new TreeSet<BooleanVariable>(COMPARATOR);
@@ -65,10 +88,37 @@ public class Apriori extends AbstractItemsetMiner {
         return true;
     }
 
-    // exo 10
     @Override
     public Set<Itemset> extract(float minFrequency) {
-        TreeSet<BooleanVariable> result = new TreeSet<BooleanVariable>(COMPARATOR);
+        Set<Itemset> result = new HashSet<>();
+        result.addAll(frequentSingletons(minFrequency));
+        List<SortedSet<BooleanVariable>> kFoundItemsets = new LinkedList<>();
+
+        for (Itemset singleton : result) {
+            SortedSet<BooleanVariable> temp = new TreeSet<BooleanVariable>(COMPARATOR);
+            temp.addAll(singleton.getItems());
+            kFoundItemsets.add(temp);
+        }
+
+        while (kFoundItemsets.get(0).size < this.base.getItems().size()) {
+            List<SortedSet<BooleanVariable>> kPlusOneFoundItemsets = new LinkedList<>();
+            for (int i = 0; i < kFoundItemsets.size(); i++) {
+                for (int j = i + 1; j < kFoundItemsets.size(); j++) {
+                    SortedSet<BooleanVariable> temp = combine(kFoundItemsets.get(i), kFoundItemsets.get(j));
+                    if (temp != null) {
+                        if (allSubsetsFrequent(temp, kFoundItemsets)) {
+                            kPlusOneFoundItemsets.add(temp);
+                        }
+                    }
+                }
+            }
+            for (SortedSet<BooleanVariable> itemset : kPlusOneFoundItemsets) {
+                if (this.frequency(itemset) >= minFrequency) {
+                    result.add(new Itemset(itemset, this.frequency(itemset)));
+                }
+            }
+            kFoundItemsets = kPlusOneFoundItemsets;
+        }
         return null;
     }
 
