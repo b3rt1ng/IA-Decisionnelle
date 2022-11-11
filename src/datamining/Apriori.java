@@ -5,13 +5,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.LinkedList;
+import java.util.List;
 
 import representation.BooleanVariable;
 
 /**
  * Class representing an "Apriori".
  * 
- * @author Pierre
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class Apriori extends AbstractItemsetMiner {
 
@@ -100,7 +102,7 @@ public class Apriori extends AbstractItemsetMiner {
             kFoundItemsets.add(temp);
         }
 
-        while (kFoundItemsets.get(0).size < this.base.getItems().size()) {
+        while (kFoundItemsets.get(0).size() < this.base.getItems().size() && !kFoundItemsets.isEmpty()) {
             List<SortedSet<BooleanVariable>> kPlusOneFoundItemsets = new LinkedList<>();
             for (int i = 0; i < kFoundItemsets.size(); i++) {
                 for (int j = i + 1; j < kFoundItemsets.size(); j++) {
