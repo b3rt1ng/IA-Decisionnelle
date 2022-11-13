@@ -19,9 +19,9 @@ public class TestApriori {
 
         boolean ok = true;
 
-        // ok = ok && AprioriTests.testFrequentSingletons();
+        ok = ok && AprioriTests.testFrequentSingletons();
         ok = ok && AprioriTests.testCombine();
-        // ok = ok && AprioriTests.testAllSubsetsFrequent();
+        ok = ok && AprioriTests.testAllSubsetsFrequent();
         ok = ok && AprioriTests.testExtract();
 
         return ok;

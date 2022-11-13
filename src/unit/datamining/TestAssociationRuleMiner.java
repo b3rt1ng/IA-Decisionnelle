@@ -19,7 +19,7 @@ public class TestAssociationRuleMiner {
 
         boolean ok = true;
 
-        // ok = ok && AbstractAssociationRuleMinerTests.testFrequency();
+        ok = ok && AbstractAssociationRuleMinerTests.testFrequency();
         ok = ok && AbstractAssociationRuleMinerTests.testConfidence();
 
         return ok;
