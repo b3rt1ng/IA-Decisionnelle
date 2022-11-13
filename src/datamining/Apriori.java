@@ -121,7 +121,7 @@ public class Apriori extends AbstractItemsetMiner {
             }
             kFoundItemsets = kPlusOneFoundItemsets;
         }
-        return null;
+        return result;
     }
 
     
