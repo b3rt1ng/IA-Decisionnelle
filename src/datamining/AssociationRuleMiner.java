@@ -17,5 +17,5 @@ public interface AssociationRuleMiner {
      * @param minFrequency the minimum frequency threshold
      * @return the set of association rules above the given thresholds
      */
-    public Set<AssociationRule> extract(float minConfidence);
+    public Set<AssociationRule> extract(float minFrequency, float minConfidence);
 }

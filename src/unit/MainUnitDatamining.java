@@ -25,6 +25,10 @@ public class MainUnitDatamining implements IsTestable {
         TestApriori testApriori = new TestApriori();
         ok = ok && testApriori.allTests();
 
+        //Tests BruteForce
+        TestBruteForceAssociationRuleMiner testBruteForceAssociationRuleMiner = new TestBruteForceAssociationRuleMiner();
+        ok = ok && testBruteForceAssociationRuleMiner.allTests();
+
         System.err.println(ok ? " All tests of the package 'datamining' are OK " : " At least one test of the package 'datamining' is KO " );
         System.err.println("");
         System.err.println("");

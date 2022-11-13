@@ -28,7 +28,7 @@ public class AssociationRule {
         return conclusion;
     }
 
-    public float getFrequence() {
+    public float getFrequency() {
         return frequence;
     }
 

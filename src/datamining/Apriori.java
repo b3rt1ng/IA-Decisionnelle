@@ -97,9 +97,9 @@ public class Apriori extends AbstractItemsetMiner {
         List<SortedSet<BooleanVariable>> kFoundItemsets = new LinkedList<>();
 
         for (Itemset singleton : result) {
-            SortedSet<BooleanVariable> temp = new TreeSet<BooleanVariable>(COMPARATOR);
-            temp.addAll(singleton.getItems());
-            kFoundItemsets.add(temp);
+            SortedSet<BooleanVariable> allsing = new TreeSet<BooleanVariable>(COMPARATOR);
+            allsing.addAll(singleton.getItems());
+            kFoundItemsets.add(allsing);
         }
 
         while (!kFoundItemsets.isEmpty() && kFoundItemsets.get(0).size() < this.base.getItems().size()) {
@@ -108,15 +108,12 @@ public class Apriori extends AbstractItemsetMiner {
                 for (int j = i + 1; j < kFoundItemsets.size(); j++) {
                     SortedSet<BooleanVariable> temp = combine(kFoundItemsets.get(i), kFoundItemsets.get(j));
                     if (temp != null) {
-                        if (allSubsetsFrequent(temp, kFoundItemsets)) {
+                        float freq = frequency(temp);
+                        if (freq >= minFrequency) {
+                            result.add(new Itemset(temp, freq));
                             kPlusOneFoundItemsets.add(temp);
                         }
                     }
-                }
-            }
-            for (SortedSet<BooleanVariable> itemset : kPlusOneFoundItemsets) {
-                if (this.frequency(itemset) >= minFrequency) {
-                    result.add(new Itemset(itemset, this.frequency(itemset)));
                 }
             }
             kFoundItemsets = kPlusOneFoundItemsets;
