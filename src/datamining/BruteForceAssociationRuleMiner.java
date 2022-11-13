@@ -13,8 +13,6 @@ import representation.BooleanVariable;
 
 public class BruteForceAssociationRuleMiner extends AbstractAssociationRuleMiner {
 
-    private BooleanDatabase database;
-
     public BruteForceAssociationRuleMiner(BooleanDatabase database) {
         super(database);
     }
@@ -52,9 +50,7 @@ public class BruteForceAssociationRuleMiner extends AbstractAssociationRuleMiner
     public Set<AssociationRule> extract(float minFrequency, float minConfidence) {
         Set<AssociationRule> result = new HashSet<AssociationRule>();
         ItemsetMiner miner = new Apriori(this.database);
-        System.out.println("ok");
         Set<Itemset> itemsets = miner.extract(minFrequency);
-        System.out.println("ok, there's no error here");
 
         for (Itemset itemset : itemsets) {
             for (Set<BooleanVariable> premise : allCandidatePremises(itemset.getItems())) {

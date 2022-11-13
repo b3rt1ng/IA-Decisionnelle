@@ -7,7 +7,7 @@ import representation.BooleanVariable;
 
 public abstract class AbstractAssociationRuleMiner implements AssociationRuleMiner {
     
-    private BooleanDatabase database;
+    protected BooleanDatabase database;
     
     public AbstractAssociationRuleMiner(BooleanDatabase database) {
         this.database = database;
