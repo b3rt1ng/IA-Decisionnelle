@@ -102,7 +102,7 @@ public class Apriori extends AbstractItemsetMiner {
             kFoundItemsets.add(temp);
         }
 
-        while (kFoundItemsets.get(0).size() < this.base.getItems().size() && !kFoundItemsets.isEmpty()) {
+        while (!kFoundItemsets.isEmpty() && kFoundItemsets.get(0).size() < this.base.getItems().size()) {
             List<SortedSet<BooleanVariable>> kPlusOneFoundItemsets = new LinkedList<>();
             for (int i = 0; i < kFoundItemsets.size(); i++) {
                 for (int j = i + 1; j < kFoundItemsets.size(); j++) {
