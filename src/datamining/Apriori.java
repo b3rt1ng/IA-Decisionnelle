@@ -35,12 +35,16 @@ public class Apriori extends AbstractItemsetMiner {
     public Set<Itemset> frequentSingletons(float frequency) {
 
         Set<Itemset> result = new HashSet<Itemset>();
+        Set<BooleanVariable> items = this.base.getItems();
 
-        for (BooleanVariable item : this.base.getItems()) {
-            if (this.frequency(Set.of(item)) >= frequency) {
-                result.add(new Itemset(Set.of(item), this.frequency(Set.of(item))));
+        if(items != null) {
+            for (BooleanVariable item : items) {
+                if (this.frequency(Set.of(item)) >= frequency) {
+                    result.add(new Itemset(Set.of(item), this.frequency(Set.of(item))));
+                }
             }
         }
+        
         return result;
     }
 
