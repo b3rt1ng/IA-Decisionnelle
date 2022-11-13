@@ -24,13 +24,13 @@ public abstract class AbstractAssociationRuleMiner implements AssociationRuleMin
 
     public static float confidence(Set<BooleanVariable> premice, Set<BooleanVariable> conclusion, Set<Itemset> itemset) {
         
-        float frequencyPremice = frequency(premice, itemset);
-        float frequencyPremiceConclusion = frequency(conclusion, itemset);
+        float frequencyPremice = -1;
+        float frequencyPremiceConclusion = -1;
         Set<BooleanVariable> union = new HashSet<BooleanVariable>(premice);
         union.addAll(conclusion);
         for (Itemset it : itemset) {
 
-            if (union.equals(it.getItems()))
+            if (premice.equals(it.getItems()))
                 frequencyPremice = it.getFrequency();
 
             if (union.equals(it.getItems()))
