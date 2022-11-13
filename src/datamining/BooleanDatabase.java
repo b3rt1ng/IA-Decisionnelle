@@ -1,5 +1,6 @@
 package datamining;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +30,7 @@ public class BooleanDatabase {
      */
     public BooleanDatabase(Set<BooleanVariable> items) {
         this.items = items;
+        this.transactions = new ArrayList<Set<BooleanVariable>>();
     }
 
     
