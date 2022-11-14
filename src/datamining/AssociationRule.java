@@ -35,18 +35,38 @@ public class AssociationRule {
         this.confidence = confidence;
     }
 
+    /**
+     * Getter for the premise.
+     * 
+     * @return The premise.
+     */
     public Set<BooleanVariable> getPremise() {
         return premise;
     }
 
+    /**
+     * Getter for the conclusion.
+     * 
+     * @return The conclusion.
+     */
     public Set<BooleanVariable> getConclusion() {
         return conclusion;
     }
 
+    /**
+     * Getter for the frequency.
+     * 
+     * @return The frequency.
+     */
     public float getFrequency() {
         return frequence;
     }
 
+    /**
+     * Getter for the confidence.
+     * 
+     * @return The confidence.
+     */
     public float getConfidence() {
         return confidence;
     }

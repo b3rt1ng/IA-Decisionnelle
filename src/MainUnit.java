@@ -20,7 +20,7 @@ public class MainUnit implements IsTestable
         ok = ok && new MainUnitRepresentation().allTests();
 
         //test planning
-        ok = ok && new MainUnitPlanning().allTests();
+        ok = ok && new MainUnitPlanning().allTests(); // no need to send the planning package
 
         //test csp
         ok = ok && new MainUnitCSP().allTests();

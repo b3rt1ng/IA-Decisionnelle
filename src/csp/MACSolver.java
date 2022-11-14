@@ -42,6 +42,8 @@ public class MACSolver extends AbstractSolver {
     /** 
      * Method that implements the MAC algorithm. 
      * 
+     * @param parsInst A map of variables and their assigned values.
+     * @param unvars A list of uninstantiated variables.
      * @param ensDomaines the set of domains.
      * @return A solution extending the partial affectation, or null if no solution exists.
      */
