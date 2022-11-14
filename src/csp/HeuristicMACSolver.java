@@ -45,9 +45,7 @@ public class HeuristicMACSolver extends AbstractSolver
     }
 
     
-    /** 
-     * @return Map<Variable, Object>
-     */
+    @Override
     public Map<Variable, Object> solve() 
     {
         Map<Variable, Set<Object>> ensDomaines = new HashMap<>();

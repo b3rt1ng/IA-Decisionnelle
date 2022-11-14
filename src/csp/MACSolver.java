@@ -24,7 +24,7 @@ public class MACSolver extends AbstractSolver {
      * Constructor for the MACSolver class.
      * 
      * @param variables A set of variables.
-     * @param contraintes A set of constraints.
+     * @param constraints A set of constraints.
      */
     public MACSolver(Set<Variable> variables, Set<Constraint> constraints) {
         super(variables, constraints);

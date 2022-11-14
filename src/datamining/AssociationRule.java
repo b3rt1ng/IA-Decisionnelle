@@ -10,9 +10,24 @@ import representation.BooleanVariable;
  */
 public class AssociationRule {
 
+    /**
+     * A premice and conclsusion.
+     */
     Set<BooleanVariable> premise, conclusion;
+
+    /**
+     * A frequency and a confidence.
+     */
     float frequence, confidence;
 
+    /**
+     * Constructor for the AssociationRule class.
+     * 
+     * @param premise A set of items (boolean variable).
+     * @param conclusion A set of items (boolean variable).
+     * @param frequence A frequency.
+     * @param confidence A confidence.
+     */
     public AssociationRule(Set<BooleanVariable> premise, Set<BooleanVariable> conclusion, float frequence, float confidence) {
         this.premise = premise;
         this.conclusion = conclusion;

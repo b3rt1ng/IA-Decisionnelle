@@ -13,10 +13,21 @@ import representation.BooleanVariable;
 
 public class BruteForceAssociationRuleMiner extends AbstractAssociationRuleMiner {
 
+    /**
+     * Constructor for the BruteForceAssociationRuleMiner class.
+     * 
+     * @param database A boolean database.
+     */
     public BruteForceAssociationRuleMiner(BooleanDatabase database) {
         super(database);
     }
 
+    /**
+     *  This method get all the possible subsets of a set of items (besides the empty set and the set itself).
+     * 
+     * @param ensItem a set of items
+     * @return the set of all subsets of the given set of items besides the empty set and the set itself
+     */
     public static Set<Set<BooleanVariable>> allCandidatePremises (Set<BooleanVariable> ensItem) {
         Set<Set<BooleanVariable>> result = new HashSet<Set<BooleanVariable>>();
         Set<Set<BooleanVariable>> mem = new HashSet<Set<BooleanVariable>>();
