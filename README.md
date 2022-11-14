@@ -24,4 +24,5 @@ avancée du projet
 - [ ] fil rouge
 - [x] représentation
 - [x] planification
-- [ ] csp
+- [x] csp
+- [x] datamining
