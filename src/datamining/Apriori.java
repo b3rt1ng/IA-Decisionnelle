@@ -79,7 +79,7 @@ public class Apriori extends AbstractItemsetMiner {
      * @param colEnsemble A collection of sets of items
      * @return true if all subsets obtained by deleting exactly one element of the set of items are contained in the collection, false otherwise
      */
-    public static Boolean allSubsetsFrequent(Set<BooleanVariable> ensemble, Collection<SortedSet<BooleanVariable>> colEnsemble) {
+    public static boolean allSubsetsFrequent(Set<BooleanVariable> ensemble, Collection<SortedSet<BooleanVariable>> colEnsemble) {
 
         TreeSet<BooleanVariable> temp = new TreeSet<BooleanVariable>(COMPARATOR);
         temp.addAll(ensemble);
