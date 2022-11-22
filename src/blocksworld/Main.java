@@ -19,7 +19,7 @@ public class Main
 
         // Building state
         int n = 5;
-        BWStateBuilder <Integer> builder = BWStateBuilder.makeBuilder(n);
+        BWStateBuilder<Integer> builder = BWStateBuilder.makeBuilder(n);
         for (int b = 0 ; b<n ; b++) 
         {
             Variable onB = ...; // get instance of Variable for " on_b "

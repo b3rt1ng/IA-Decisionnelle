@@ -11,12 +11,10 @@ public class State
     private HashSet<Variable> fixedB;
     private HashSet<BooleanVariable> freeP;
 
-    public State(int n, int m)
+    public State(int nbBlocs, int nbPiles)
     {
         this.onB = new HashSet<>();
         this.fixedB = new HashSet<>();
         this.freeP = new HashSet<>();
-
-        
     }    
 }
