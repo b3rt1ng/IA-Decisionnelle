@@ -5,13 +5,23 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.LinkedList;
+import java.util.List;
 
 import representation.BooleanVariable;
 
-// j'en suis à l'exo 8
-
+/**
+ * Class representing an "Apriori".
+ * 
+ * @author Antoine Collenot, Kenzo Lecoindre
+ */
 public class Apriori extends AbstractItemsetMiner {
 
+    /**
+     * Constructor for the Apriori class.
+     * 
+     * @param base A boolean database.
+     */
     public Apriori(BooleanDatabase base) {
         super(base);
     }
@@ -22,19 +32,32 @@ public class Apriori extends AbstractItemsetMiner {
      * @param frequency The frequency to at least surpass
      * @return a set of Itemset that are equally frequent or more than a givent frequency
      */
-
     public Set<Itemset> frequentSingletons(float frequency) {
 
         Set<Itemset> result = new HashSet<Itemset>();
+        Set<BooleanVariable> items = this.base.getItems();
 
-        for (BooleanVariable item : this.base.getItems()) {
-            if (this.frequency(Set.of(item)) >= frequency) {
-                result.add(new Itemset(Set.of(item), this.frequency(Set.of(item))));
+        if(items != null) {
+            for (BooleanVariable item : items) {
+                if (this.frequency(Set.of(item)) >= frequency) {
+                    result.add(new Itemset(Set.of(item), this.frequency(Set.of(item))));
+                }
             }
         }
+        
         return result;
     }
 
+    /**
+     * This method will return the combination of the two given itemset if the following conditions are valid:
+     *  -the two sets have the same size k
+     *  -the two sets have the same k − 1 first items
+     *  -the two sets have k different items
+     * 
+     * @param firstEns The first set of items
+     * @param secondEns The second set of items
+     * @return a sorted set of items matching the three required conditions or null if the conditions are not met
+     */
     public static SortedSet<BooleanVariable> combine(SortedSet<BooleanVariable> firstEns, SortedSet<BooleanVariable> secondEns) {
 
         if (firstEns.size() == secondEns.size() && firstEns.size()!=0){
@@ -50,7 +73,13 @@ public class Apriori extends AbstractItemsetMiner {
         return null;
     }
 
-    public static Boolean allSubsetsFrequent(Set<BooleanVariable> ensemble, Collection<SortedSet<BooleanVariable>> colEnsemble) {
+    /**
+     * 
+     * @param ensemble A set of items
+     * @param colEnsemble A collection of sets of items
+     * @return true if all subsets obtained by deleting exactly one element of the set of items are contained in the collection, false otherwise
+     */
+    public static boolean allSubsetsFrequent(Set<BooleanVariable> ensemble, Collection<SortedSet<BooleanVariable>> colEnsemble) {
 
         TreeSet<BooleanVariable> temp = new TreeSet<BooleanVariable>(COMPARATOR);
         temp.addAll(ensemble);
@@ -65,11 +94,35 @@ public class Apriori extends AbstractItemsetMiner {
         return true;
     }
 
-    // exo 10
     @Override
     public Set<Itemset> extract(float minFrequency) {
-        TreeSet<BooleanVariable> result = new TreeSet<BooleanVariable>(COMPARATOR);
-        return null;
+        Set<Itemset> result = new HashSet<>();
+        result.addAll(frequentSingletons(minFrequency));
+        List<SortedSet<BooleanVariable>> kFoundItemsets = new LinkedList<>();
+
+        for (Itemset singleton : result) {
+            SortedSet<BooleanVariable> allsing = new TreeSet<BooleanVariable>(COMPARATOR);
+            allsing.addAll(singleton.getItems());
+            kFoundItemsets.add(allsing);
+        }
+
+        while (!kFoundItemsets.isEmpty() && kFoundItemsets.get(0).size() < this.base.getItems().size()) {
+            List<SortedSet<BooleanVariable>> kPlusOneFoundItemsets = new LinkedList<>();
+            for (int i = 0; i < kFoundItemsets.size(); i++) {
+                for (int j = i + 1; j < kFoundItemsets.size(); j++) {
+                    SortedSet<BooleanVariable> temp = combine(kFoundItemsets.get(i), kFoundItemsets.get(j));
+                    if (temp != null) {
+                        float freq = frequency(temp);
+                        if (freq >= minFrequency) {
+                            result.add(new Itemset(temp, freq));
+                            kPlusOneFoundItemsets.add(temp);
+                        }
+                    }
+                }
+            }
+            kFoundItemsets = kPlusOneFoundItemsets;
+        }
+        return result;
     }
 
     

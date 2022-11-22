@@ -11,10 +11,13 @@ import representation.Variable;
 /**
  * Class representing an arc consistency.
  * 
- * @author Kenzo LECOINDRE
+ * @author Antoine Collenot, Kenzo Lecoindre
  */
 public class ArcConsistency 
 {
+    /**
+     * A set of variables.
+     */
     private Set<Constraint> ensConstraints;
 
     public ArcConsistency(Set<Constraint> ensConstraints)
@@ -30,6 +33,13 @@ public class ArcConsistency
         this.ensConstraints = ensConstraints;
     }
 
+    
+    /** 
+     * Method that removes the values ​​v of the domains for which there is an unsatisfied unary constraint unsatified by v.
+     * 
+     * @param ensDomaines a set of domains.
+     * @return false if one domain has been empited, true otherwise.
+     */
     public boolean enforceNodeConsistency(Map<Variable, Set<Object>> ensDomaines)
     {
         boolean bool = true;
@@ -55,6 +65,16 @@ public class ArcConsistency
         return bool;
     }
 
+    
+    /** 
+     * Method that removes the values ​​v1 in d1 wich there's no such v2 in d2 supporting v1 for all constraints on v1 and v2.
+     * 
+     * @param v1 a variable.
+     * @param d1 v1's domain.
+     * @param v2 a variable.
+     * @param d2 v2's domain.
+     * @return true if at least one value has been removed from d1, false otherwise.
+     */
     public boolean revise(Variable v1, Set<Object> d1, Variable v2, Set<Object> d2)
     {
         boolean del = false;
@@ -98,6 +118,13 @@ public class ArcConsistency
         return del;
     }
     
+    
+    /** 
+     * Filters all domains using ac1, until stable
+     * 
+     * @param ensDomaines a set of domains.
+     * @return false if one domain has been empited, true otherwise.
+     */
     public boolean ac1(Map<Variable, Set<Object>> ensDomaines)
     {
         if(!enforceNodeConsistency(ensDomaines))

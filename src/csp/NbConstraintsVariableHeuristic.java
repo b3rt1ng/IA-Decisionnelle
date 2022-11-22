@@ -9,9 +9,22 @@ import representation.Variable;
 
 public class NbConstraintsVariableHeuristic implements VariableHeuristic 
 {
+    /**
+     * A set of constraints
+     */
     private Set<Constraint> constraints;
+
+    /**
+     * A boolean that tells us if we prefer the variables appearing on the most domains or the least.
+     */
     private boolean moreConstraintsFrequency;
 
+    /**
+     * Constructor for the NbConstraintsVariableHeuristic class.
+     * 
+     * @param constraints A set of constraints.
+     * @param moreConstraintsFrequency A boolean that tells us if we prefer the variables appearing on the most domains or the least.
+     */
     public NbConstraintsVariableHeuristic(Set<Constraint> constraints, boolean moreConstraintsFrequency)
     {
         this.constraints = constraints;

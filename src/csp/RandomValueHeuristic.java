@@ -9,10 +9,22 @@ import java.util.Set;
 
 import representation.Variable;
 
+/**
+ * A class that implements the "ValueHeuristic" interface representing a Random Value Heuristic.
+ * 
+ * @author Antoine Collenot, Kenzo Lecoindre
+ */
 public class RandomValueHeuristic implements ValueHeuristic
 {
+    /**
+     * A random generator.
+     */
     private Random random;
-    
+
+    /**
+     * Constructor for the RandomValueHeuristic class.
+     * @param random A random generator.
+     */
     public RandomValueHeuristic(Random random)
     {
         this.random = random;
