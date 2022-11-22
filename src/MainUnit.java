@@ -25,6 +25,9 @@ public class MainUnit implements IsTestable
         //test csp
         ok = ok && new MainUnitCSP().allTests();
 
+        //test blocksworld
+        ok = ok && new MainUnitBlocksWorld().allTests();
+
         //test csp
         ok = ok && new MainUnitDatamining().allTests();
 
