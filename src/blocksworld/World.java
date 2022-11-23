@@ -87,7 +87,8 @@ public class World {
     }
 
     public static void main(String[] args) {
-        World s = new World(4, 5);
+        System.out.println("generating a world with 3 blocks and 3 stacks...");
+        World s = new World(3, 3);
         System.out.println(s.getVariables());
     }
 }
