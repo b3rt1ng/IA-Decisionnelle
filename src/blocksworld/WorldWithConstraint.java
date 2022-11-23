@@ -4,6 +4,7 @@ import java.util.Set;
 
 import representation.Constraint;
 import representation.DifferenceConstraint;
+import representation.Variable;
 
 
 /**
@@ -38,7 +39,7 @@ public class WorldWithConstraint extends World {
         for (int i = 0; i < nbBlocks; i++) {
             for (int j = 0; j < nbBlocks; j++) {
                 if (i != j) {
-                    this.constraints.add(new DifferenceConstraint(this.onB.get(i), this.onB.get(j)));
+                    this.differenceConstraints.add(new DifferenceConstraint(this.onB.get(i), this.onB.get(j)));
                 }
             }
         }
@@ -49,7 +50,16 @@ public class WorldWithConstraint extends World {
                 Set<Object> s1 = new HashSet<>();
                 Set<Object> s2 = new HashSet<>();
                 s1.add(i);
-                // WIP
+                Variable v2;
+                if (i < 0) {
+                    v2 = this.freeP.get(i);
+                    s2.add(false);
+                } else {
+                    v2 = this.onB.get(i);
+                    s2.add(true);
+                }
+                this.implications.add(new ImplicationConstraint(onBlock, s1, v2, s2));
+                // à vérifier
             }
         }
         
