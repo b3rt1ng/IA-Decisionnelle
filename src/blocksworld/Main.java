@@ -1,5 +1,7 @@
 package blocksworld;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 import bwmodel.BWState;
@@ -11,12 +13,11 @@ import representation.Variable;
 
 public class Main 
 {
-    public static void main(String[] args) 
+    public static void main(final String[] args) 
     {
-        System.out.println("Hello World!");
+        System.out.println("Main class started");
 
         /*
-
         // Building state
         int n = 5;
         BWStateBuilder<Integer> builder = BWStateBuilder.makeBuilder(n);
