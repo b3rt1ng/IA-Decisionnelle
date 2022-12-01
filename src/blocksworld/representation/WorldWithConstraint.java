@@ -1,7 +1,9 @@
-package blocksworld;
+package blocksworld.representation;
 
 import java.util.Set;
+import java.util.HashSet;
 
+import representation.Variable;
 import representation.Constraint;
 import representation.DifferenceConstraint;
 
@@ -21,7 +23,7 @@ public class WorldWithConstraint extends World {
     /**
      * a set of implcation constraints applicable to our blocks
      */
-    protected Set<Constraint> implications;
+    protected Set<Constraint> implicationConstraints;
 
     /**
      * Initialise a new World given the number of blocks and the number of stacks.
@@ -32,13 +34,14 @@ public class WorldWithConstraint extends World {
     public WorldWithConstraint(int nbBlocks, int nbStacks) {
         super(nbBlocks, nbStacks);
 
-        this.constraints = new HashSet<>();
+        this.differenceConstraints = new HashSet<>();
+        this.implicationConstraints = new HashSet<>();
 
         // Initialisation of the constraints stating that a block value cannot take the same value as another block
         for (int i = 0; i < nbBlocks; i++) {
             for (int j = 0; j < nbBlocks; j++) {
                 if (i != j) {
-                    this.constraints.add(new DifferenceConstraint(this.onB.get(i), this.onB.get(j)));
+                    this.differenceConstraints.add(new DifferenceConstraint(this.onB.get(i), this.onB.get(j)));
                 }
             }
         }
@@ -52,14 +55,13 @@ public class WorldWithConstraint extends World {
                 // WIP
             }
         }
-        
     }
 
     /**
      * @return the constraints
      */
     public Set<Constraint> getConstraints() {
-        Set<Constraint> result;
+        Set<Constraint> result = new HashSet<>();
         result.addAll(this.implicationConstraints);
         result.addAll(this.differenceConstraints);
         return result;
