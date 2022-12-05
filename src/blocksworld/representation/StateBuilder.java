@@ -3,6 +3,7 @@ package blocksworld.representation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import representation.BooleanVariable;
 import representation.Variable;
@@ -55,5 +56,37 @@ public class StateBuilder
         }
 
         return state;
-    }    
+    } 
+    
+    public void stateShuffler(int nb)
+    {
+        for(int i=0 ; i<nb ; i++)
+        {
+            //on fait la liste des piles non vides
+            ArrayList<Integer> listPileNotEmpty = new ArrayList<Integer>();
+            for(int j=0 ; j<this.stacks.length ; j++)
+            {
+                if(this.stacks[j].size() > 0)
+                {
+                    listPileNotEmpty.add(j);
+                }
+            }
+
+            //on choisit une pile non vide au hasard
+            Random rand = new Random();
+            int pile = listPileNotEmpty.get(rand.nextInt(listPileNotEmpty.size()));
+
+            //on prend le dernier bloc de la pile
+            int block = this.stacks[pile].get(this.stacks[pile].size()-1);
+
+            //on l'efface de la pile
+            this.stacks[pile].remove(this.stacks[pile].size()-1);
+
+            //on choisit une pile au hasard
+            int pileFinal = rand.nextInt(this.stacks.length);
+
+            //on ajoute le bloc à la pile
+            this.stacks[pileFinal].add(block);
+        }
+    }
 }
