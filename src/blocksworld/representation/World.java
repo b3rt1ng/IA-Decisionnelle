@@ -66,13 +66,6 @@ public class World {
         for (int i = -1; i >= -nbStacks; i--)
             this.freeP.put(i, new BooleanVariable("free"+i));
     }
-    
-    public Set<BooleanVariable> getBooleanVariables() {
-        Set<BooleanVariable> variables = new HashSet<>();
-        variables.addAll(this.fixedB.values());
-        variables.addAll(this.freeP.values());
-        return variables;
-    }
 
     public Set<Variable> getVariables() {
         Set<Variable> variables = new HashSet<>(this.onB.values());
