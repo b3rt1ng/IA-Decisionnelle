@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.HashSet;
 
 import bwgeneratordemo.Demo;
+import bwgenerator.BWGenerator;
+
 import datamining.BooleanDatabase;
 import representation.BooleanVariable;
 import blocksworld.representation.WorldOfBooleanVariables;
@@ -13,8 +15,8 @@ import blocksworld.representation.WorldOfBooleanVariables;
 public class DataminingOnBlockWorld {
 
     protected Random random = new Random();
+    protected int nbTransaction = 10000;
 
-    protected int nbTransaction = 10;
 
     public DataminingOnBlockWorld(int nbBlocks, int nbStacks) {
 
@@ -28,8 +30,8 @@ public class DataminingOnBlockWorld {
         BooleanDatabase db = new BooleanDatabase(items);
         for (int i = 0; i < this.nbTransaction; i++) {
             List<List<Integer>> state = Demo.getState(this.random);
-            // Set<BooleanVariable> instance = les états correspondants
-            // db.add(instance);
+            Set<BooleanVariable> instance = world.processState(state, nbBlocks, nbStacks);
+            db.add(instance);
         }
     }
 
