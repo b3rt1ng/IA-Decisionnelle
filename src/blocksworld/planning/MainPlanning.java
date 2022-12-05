@@ -29,6 +29,8 @@ public class MainPlanning
         BlocksworldActionFactory actionFactory = new BlocksworldActionFactory(nbBlocks, nbStacks);
         Set<Action> actions = actionFactory.getActions();
 
+        /* ----------------------------------------------------------------------------------- */
+
         /* Etat initial */
         ArrayList<Integer>[] stacks = new ArrayList[nbStacks];
         for(int i = 0; i < nbStacks; i++)
