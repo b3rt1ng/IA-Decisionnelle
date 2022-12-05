@@ -8,11 +8,31 @@ import java.util.Random;
 import representation.BooleanVariable;
 import representation.Variable;
 
+/**
+ * Fabrique d'états sous la forme de Map<Variable, Object> pour le problème des blocs, en servant d'un modèle plus simple à paramétrer.
+ * En effet, on utilise un tableau de ArrayList<Integer> pour représenter l'état.
+ * Chaque case du tableau représente une pile, et chaque élément de la pile représente un bloc.
+ * Plus le bloc est vers la fin de la liste et plus il est haut.
+ */
 public class StateBuilder 
 {
+    /**
+     * Tableau de piles.
+     */
     protected ArrayList<Integer>[] stacks;
+
+    /**
+     * Liste des variables.
+     */
     protected ArrayList<Variable> variables;
 
+    /**
+     * Constructeur.
+     * 
+     * @param nbBlocks Nombre de blocs.
+     * @param nbStacks Nombre de piles.
+     * @param stacks Tableau de piles.
+     */
     public StateBuilder(int nbBlocks, int nbStacks, ArrayList<Integer>[] stacks)
     {
         this.stacks = stacks;
@@ -21,6 +41,9 @@ public class StateBuilder
         this.variables = new ArrayList<>(world.getVariables());
     }
 
+    /**
+     * Retourne l'état sous la forme d'une Map<Variable, Object>.
+     */
     public Map<Variable, Object> getState()
     {
         HashMap<Variable, Object> state = new HashMap<Variable, Object>();
@@ -58,6 +81,11 @@ public class StateBuilder
         return state;
     } 
     
+    /**
+     * Mélange l'état.
+     * 
+     * @param nb Nombre de mélange.
+     */
     public void stateShuffler(int nb)
     {
         for(int i=0 ; i<nb ; i++)

@@ -10,17 +10,35 @@ import planning.BasicAction;
 import representation.BooleanVariable;
 import representation.Variable;
 
+/**
+ * Fabrique d'actions pour le problème des blocs.
+ */
 public class BlocksworldActionFactory 
 {
+    /**
+     * Nombre de blocs.
+     */
     protected int nbBlocks;
+
+    /**
+     * Nombre de piles.
+     */
     protected int nbStacks;
 
+    /**
+     * Constructeur.
+     * @param nbBlocks Nombre de blocs.
+     * @param nbStacks Nombre de piles.
+     */
     public BlocksworldActionFactory(int nbBlocks, int nbStacks)
     {
         this.nbBlocks = nbBlocks;
         this.nbStacks = nbStacks;
     }
 
+    /**
+     * Retourne l'ensemble des actions possibles.
+     */
     public Set<Action> getActions()
     {
         HashSet<Action> setActions = new HashSet<Action>();

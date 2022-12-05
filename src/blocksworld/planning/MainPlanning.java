@@ -20,6 +20,9 @@ import representation.Variable;
 
 import planning.*;
 
+/**
+ * Classe principale de la partie Planning du fil rouge.
+ */
 public class MainPlanning 
 {
     /**

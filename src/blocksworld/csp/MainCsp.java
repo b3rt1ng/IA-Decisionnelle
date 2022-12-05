@@ -19,8 +19,15 @@ import representation.Variable;
 
 import csp.*;
 
+/**
+ * Classe principale de la partie CSP du fil rouge.
+ */
 public class MainCsp 
 {
+    /**
+     * Lance le calcul et la visualisation graphique des différentes méthodes de Solving implémentées.
+     * @param args arguments passed by the command line
+     */
     public static void main(String[] args) 
     {
         int nbBlocks = 10;
