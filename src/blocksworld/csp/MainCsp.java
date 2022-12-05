@@ -1,11 +1,20 @@
 package blocksworld.csp;
 
+import java.awt.Dimension;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 
+import javax.swing.JFrame;
+
+import blocksworld.planning.MainPlanning;
 import blocksworld.representation.World;
 import blocksworld.representation.WorldWithRegularConstraints;
-
+import bwmodel.BWState;
+import bwmodel.BWStateBuilder;
+import bwui.BWComponent;
+import bwui.BWIntegerGUI;
 import representation.Variable;
 
 import csp.*;
@@ -42,6 +51,8 @@ public class MainCsp
         System.out.println("");
         System.out.println("");
 
+        showSolutionGUI("Backtrack", nbBlocks, nbStacks, solution);
+
     
         //MACSolver
 
@@ -57,6 +68,8 @@ public class MainCsp
 
         System.out.println("");
         System.out.println("");
+
+        showSolutionGUI("MACSolver", nbBlocks, nbStacks, solution);
     
     
         //HeuristicMACSolver
@@ -86,11 +99,29 @@ public class MainCsp
 
                 System.out.println("");
                 System.out.println("");
+
+                showSolutionGUI("HeuristicMACSolver (" + tabVariableHeuristic[i].getClass().getSimpleName() + ", " + tabValueHeuristic[j].getClass().getSimpleName() + ") :", nbBlocks, nbStacks, solution);
             }
         }
 
+        /* -------------------------------------------------------------------------------------------------------------- */
+        
+        System.out.println("Appuyez sur entrée pour quitter");
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
     
     
-    
+    }
+
+    public static void showSolutionGUI(String title, int nbBlocks, int nbStacks, Map<Variable, Object> instanciation)
+    {
+        BWIntegerGUI gui = new BWIntegerGUI(nbBlocks);
+        JFrame frame = new JFrame(title);
+        frame.setMinimumSize(new Dimension(500, 500));
+        BWState<Integer> bwState = MainPlanning.makeBWState(instanciation, nbBlocks, nbStacks);
+        BWComponent<Integer> component = gui.getComponent(bwState);
+        frame.add(component);
+        frame.pack();
+        frame.setVisible(true);
     }
 }

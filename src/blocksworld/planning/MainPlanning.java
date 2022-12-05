@@ -207,7 +207,7 @@ public class MainPlanning
             }
 
             state = a.successor(state);
-            component.setState(makeBWState(state, nbBlocks, nbStacks));
+            component.setState(MainPlanning.makeBWState(state, nbBlocks, nbStacks));
         }
     }
 }
