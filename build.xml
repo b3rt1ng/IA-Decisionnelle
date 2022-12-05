@@ -39,6 +39,12 @@
         </java>
     </target>
 
+    <target name="DataminingOnBlockWorld" description="Execution de la classe executable DataminingOnBlockWorld" depends="compile">
+        <java classname="blocksworld.datamining.DataminingOnBlockWorld" fork="false">
+            <classpath refid="projet.classpath"/>
+        </java>
+    </target>
+
     <target name="doc">
         <delete dir="${projet.doc.dir}" />
         <javadoc sourcepath="${projet.src.dir}" destdir="doc" access="private">
