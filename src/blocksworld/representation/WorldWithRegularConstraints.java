@@ -46,6 +46,9 @@ public class WorldWithRegularConstraints extends WorldWithConstraint {
         }
     }
 
+    /**
+     * @return the regularConstraints
+     */
     public Set<Constraint> getRegularConstraints() {
         return this.regularConstraints;
     }

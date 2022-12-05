@@ -67,6 +67,11 @@ public class World {
             this.freeP.put(i, new BooleanVariable("free"+i));
     }
 
+    /**
+     * Getter for all the variables of the world.
+     * 
+     * @return a set of all the variables of the world (onB, fixedB and freeP).
+     */
     public Set<Variable> getVariables() {
         Set<Variable> variables = new HashSet<>(this.onB.values());
         variables.addAll(this.fixedB.values());
@@ -74,14 +79,29 @@ public class World {
         return variables;
     }
 
+    /**
+     * Getter for the onB variables.
+     * 
+     * @return a set of all the onB variables.
+     */
     public Map<Integer, Variable> getOnB() {
         return this.onB;
     }
 
+    /**
+     * Getter for the fixedB variables.
+     * 
+     * @return a set of all the fixedB variables.
+     */
     public Map<Integer, BooleanVariable> getFixedB() {
         return this.fixedB;
     }
 
+    /**
+     * Getter for the freeP variables.
+     * 
+     * @return a set of all the freeP variables.
+     */
     public Map<Integer, BooleanVariable> getFreeP() {
         return this.freeP;
     }

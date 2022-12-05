@@ -48,6 +48,15 @@ public class WorldOfBooleanVariables extends World {
     }
 
 
+    /**
+     * process a worlds to get it's boolean variables
+     * 
+     * @param state a world state
+     * @param nbBlocks the number of blocks in the world.
+     * @param nbStacks the number of stacks in the world.
+     * 
+     * @return a world of boolean variables
+     */
     public Set<BooleanVariable> processState(List<List<Integer>> state, int nbBlocks, int nbStacks) {
         Set<BooleanVariable> instance = new HashSet<>();
         WorldOfBooleanVariables world = new WorldOfBooleanVariables(nbBlocks, nbStacks);
