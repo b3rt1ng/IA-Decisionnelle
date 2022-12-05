@@ -6,6 +6,7 @@ import java.util.HashSet;
 import representation.Variable;
 import representation.Constraint;
 import representation.DifferenceConstraint;
+import representation.Implication;
 
 
 /**
@@ -52,7 +53,15 @@ public class WorldWithConstraint extends World {
                 Set<Object> s1 = new HashSet<>();
                 Set<Object> s2 = new HashSet<>();
                 s1.add(i);
-                // WIP
+                Variable v;
+                if (i < 0) {
+                    v = this.freeP.get(i);
+                    s2.add(false);
+                } else {
+                    v = this.onB.get(i);
+                    s2.add(true);
+                }
+                this.implicationConstraints.add(new Implication(onBlock, s1, v, s2));
             }
         }
     }
