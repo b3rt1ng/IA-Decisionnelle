@@ -1,6 +1,8 @@
 package blocksworld.planning;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -8,9 +10,10 @@ import java.util.Set;
 import javax.swing.JFrame;
 
 import blocksworld.representation.StateBuilder;
-
+import blocksworld.representation.World;
 import bwmodel.BWState;
 import bwmodel.BWStateBuilder;
+import bwui.BWComponent;
 import bwui.BWIntegerGUI;
 
 import representation.Variable;
@@ -19,6 +22,10 @@ import planning.*;
 
 public class MainPlanning 
 {
+    /**
+     * Lance le calcul et la visualisation graphique des différentes méthodes de plannification implémentées.
+     * @param args arguments passed by the command line
+     */
     public static void main(String[] args) 
     {
         int nbBlocks = 3;
@@ -75,6 +82,9 @@ public class MainPlanning
         System.out.println("");
         System.out.println("");
 
+        showPlanGUI("BFS", nbBlocks, nbStacks, instanciation, plan);
+
+
 
         //Planning : DFS
 
@@ -92,6 +102,9 @@ public class MainPlanning
 
         System.out.println("");
         System.out.println("");
+
+        showPlanGUI("DFS", nbBlocks, nbStacks, instanciation, plan);
+
 
 
         //Planning : Dijkstra
@@ -111,6 +124,9 @@ public class MainPlanning
         System.out.println("");
         System.out.println("");
 
+        showPlanGUI("Dijkstra", nbBlocks, nbStacks, instanciation, plan);
+
+
 
         //Planning : A* (heuristique : nombre de blocs mal placés)
 
@@ -128,6 +144,9 @@ public class MainPlanning
 
         System.out.println("");
         System.out.println("");
+
+        showPlanGUI("A* (heuristique : nombre de blocs mal placés)", nbBlocks, nbStacks, instanciation, plan);
+
 
 
         //Planning : A* (heuristique : nombre de blocs sur la mauvaise pile)
@@ -147,5 +166,48 @@ public class MainPlanning
         System.out.println("");
         System.out.println("");
 
+        showPlanGUI("A* (heuristique : nombre de blocs sur la mauvaise pile)", nbBlocks, nbStacks, instanciation, plan);
+
     }    
+
+    public static BWState<Integer> makeBWState(Map<Variable, Object> instanciation, int nbBlocs, int nbPiles)
+    {
+        BWStateBuilder<Integer> builder = BWStateBuilder.makeBuilder(nbBlocs);
+
+        World world = new World(nbBlocs, nbPiles);
+
+        for(Integer i: world.getOnB().keySet()) {
+            if((Integer) instanciation.get(world.getOnB().get(i)) >= 0) {
+                builder.setOn(i, (Integer) instanciation.get(world.getOnB().get(i)));
+            }
+        }
+        return builder.getState();
+    }
+
+    public static void showPlanGUI(String title, int nbBlocks, int nbStacks, Map<Variable, Object> instanciation, List<Action> plan)
+    {
+        BWIntegerGUI gui = new BWIntegerGUI(nbBlocks);
+        JFrame frame = new JFrame(title);
+        frame.setMinimumSize(new Dimension(500, 500));
+        BWState<Integer> bwState = MainPlanning.makeBWState(instanciation, nbBlocks, nbStacks);
+        BWComponent<Integer> component = gui.getComponent(bwState);
+        frame.add(component);
+        frame.pack();
+        frame.setVisible(true);
+
+        Map<Variable, Object> state = new HashMap<>(instanciation);
+
+        // Playing plan
+        for(Action a : plan) 
+        {
+            try{
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            state = a.successor(state);
+            component.setState(makeBWState(state, nbBlocks, nbStacks));
+        }
+    }
 }
