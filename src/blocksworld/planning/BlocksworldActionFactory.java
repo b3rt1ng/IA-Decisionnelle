@@ -49,7 +49,7 @@ public class BlocksworldActionFactory
                 }
 
                 //déplacer un bloc b du dessus d’un bloc b′ vers le dessus d’une pile p
-                for(int k=-1 ; k >= this.nbStacks ; k--)
+                for(int k=-1 ; k >= -this.nbStacks ; k--)
                 {
                     if(i != j && i != k && j != k)
                     {
@@ -69,9 +69,9 @@ public class BlocksworldActionFactory
                 }  
             }
 
-            //déplacer un bloc b du dessus d’une pile p vers le dessus d’un bloc b′
-            for(int j = -1; j >= this.nbStacks; j--)
+            for(int j = -1; j >= -this.nbStacks; j--)
             {
+                //déplacer un bloc b du dessus d’une pile p vers le dessus d’un bloc b′
                 for(int k=0 ; k<this.nbBlocks ; k++)
                 {
                     if(i != j && i != k && j != k)
@@ -92,7 +92,7 @@ public class BlocksworldActionFactory
                 }
 
                 //déplacer un bloc b du dessus d’une pile p vers le dessus d’une pile p′
-                for(int k = -1; k >= this.nbStacks; k--)
+                for(int k = -1; k >= -this.nbStacks; k--)
                 {
                     if(i != j && i != k && j != k)
                     {

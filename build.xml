@@ -27,6 +27,12 @@
         </java>
     </target>
 
+    <target name="MainPlanning" description="Execution de la classe executable MainPlanning" depends="compile">
+        <java classname="blocksworld.planning.MainPlanning" fork="false">
+            <classpath refid="projet.classpath"/>
+        </java>
+    </target>
+
     <target name="doc">
         <delete dir="${projet.doc.dir}" />
         <javadoc sourcepath="${projet.src.dir}" destdir="doc" access="private">
