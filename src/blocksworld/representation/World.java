@@ -24,12 +24,12 @@ public class World {
     /**
      * The fixedB variables mean that a block B is unmovable by taking a boolean value.
      */
-    protected Map<Integer, Variable> fixedB;
+    protected Map<Integer, BooleanVariable> fixedB;
 
     /**
      * The clearB variables mean that a stack S is clear / empty by taking a boolean value.
      */
-    protected Map<Integer, Variable> freeP;
+    protected Map<Integer, BooleanVariable> freeP;
 
     /**
      * both the number of blocks and the number of stacks in our blocks world.
@@ -67,6 +67,13 @@ public class World {
             this.freeP.put(i, new BooleanVariable("free"+i));
     }
     
+    public Set<BooleanVariable> getBooleanVariables() {
+        Set<BooleanVariable> variables = new HashSet<>();
+        variables.addAll(this.fixedB.values());
+        variables.addAll(this.freeP.values());
+        return variables;
+    }
+
     public Set<Variable> getVariables() {
         Set<Variable> variables = new HashSet<>(this.onB.values());
         variables.addAll(this.fixedB.values());
@@ -78,11 +85,11 @@ public class World {
         return this.onB;
     }
 
-    public Map<Integer, Variable> getFixedB() {
+    public Map<Integer, BooleanVariable> getFixedB() {
         return this.fixedB;
     }
 
-    public Map<Integer, Variable> getFreeP() {
+    public Map<Integer, BooleanVariable> getFreeP() {
         return this.freeP;
     }
 
