@@ -41,18 +41,16 @@ public class WorldWithConstraint extends World {
         // Initialisation of the constraints stating that a block value cannot take the same value as another block
         for (int i = 0; i < nbBlocks; i++) {
             for (int j = 0; j < nbBlocks; j++) {
-                if (i != j) {
-                    this.differenceConstraints.add(new DifferenceConstraint(this.onB.get(i), this.onB.get(j)));
-                }
+                this.differenceConstraints.add(new DifferenceConstraint(this.onB.get(i), this.onB.get(j)));
             }
         }
 
         for (Variable onBlock : this.onB.values()) {
             for (Object value : onBlock.getDomain()) {
                 Integer i = (Integer) value;
-                Set<Object> s1 = new HashSet<>();
+                Set<Object> s1 = Set.of(i);
+                
                 Set<Object> s2 = new HashSet<>();
-                s1.add(i);
                 Variable v;
                 if (i < 0) {
                     v = this.freeP.get(i);
