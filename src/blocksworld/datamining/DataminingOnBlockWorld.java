@@ -24,13 +24,12 @@ public class DataminingOnBlockWorld {
         // WorldWithRegularConstraints world = new WorldWithRegularConstraints(nbBlocks, nbStacks);
         WorldOfBooleanVariables world = new WorldOfBooleanVariables(nbBlocks, nbStacks);
 
-        BooleanDatabase db = new BooleanDatabase(world.getFixedB());
+        // BooleanDatabase db = new BooleanDatabase(world.getFixedB());
         for (int i = 0; i < 100; i++) {
             List<List<Integer>> state = Demo.getState(new Random());
             // Set<BooleanVariable> instance = Demo.getInstance(state);
             // db.add(instance);
         }
     }
-
 
 }
