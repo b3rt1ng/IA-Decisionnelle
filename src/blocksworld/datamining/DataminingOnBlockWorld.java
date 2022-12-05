@@ -20,11 +20,6 @@ import blocksworld.representation.WorldOfBooleanVariables;
 public class DataminingOnBlockWorld {
 
     /**
-     * a random instance to give to our demo
-     */
-    protected Random random = new Random();
-
-    /**
      * the number of transaction we wanna generate
      */
     protected int nbTransaction = 10000;
@@ -47,9 +42,8 @@ public class DataminingOnBlockWorld {
         BooleanDatabase db = new BooleanDatabase(items);
 
         for (int i = 0; i < this.nbTransaction; i++) {
-            List<List<Integer>> state = Demo.getState(this.random); // le problème est là
-            Set<BooleanVariable> instance = world.processState(state, nbBlocks, nbStacks);
-            db.add(instance);
+            List<List<Integer>> state = Demo.getState(new Random());
+            db.add(world.processState(state, nbBlocks, nbStacks));
         }
 
         AssociationRuleMiner miner = new BruteForceAssociationRuleMiner(db);
@@ -60,8 +54,8 @@ public class DataminingOnBlockWorld {
 
         Set<AssociationRule> rules = miner.extract(minFreq, minConf);
 
-        System.out.println("found " + rules.size() + " rules: ");
-        rules.forEach(r -> System.out.println("\t-> " + r + " with " + r.getConfidence()*100 + "% confidence."));
+        System.out.println("found " + rules.size() + " rule(s): ");
+        rules.forEach(r -> System.out.println("\t-> " + r + " with " + r.getConfidence()*100 + "% confidence and " + r.getFrequency() + " frequency"));
 
     }
 
