@@ -7,7 +7,7 @@ import java.util.Set;
 import bwgeneratordemo.Demo;
 import datamining.BooleanDatabase;
 import representation.BooleanVariable;
-import blocksworld.representation.WorldWithRegularConstraints;
+import blocksworld.representation.WorldOfBooleanVariables;
 
 public class DataminingOnBlockWorld {
     
@@ -18,11 +18,13 @@ public class DataminingOnBlockWorld {
 
     public DataminingOnBlockWorld(int nbBlocks, int nbStacks) {
 
-        WorldWithRegularConstraints world = new WorldWithRegularConstraints(nbBlocks, nbStacks);
         this.nbBlocks = nbBlocks;
         this.nbStacks = nbStacks;
 
-        // BooleanDatabase db = new BooleanDatabase(world.getFixedB());
+        // WorldWithRegularConstraints world = new WorldWithRegularConstraints(nbBlocks, nbStacks);
+        WorldOfBooleanVariables world = new WorldOfBooleanVariables(nbBlocks, nbStacks);
+
+        BooleanDatabase db = new BooleanDatabase(world.getFixedB());
         for (int i = 0; i < 100; i++) {
             List<List<Integer>> state = Demo.getState(new Random());
             // Set<BooleanVariable> instance = Demo.getInstance(state);
