@@ -59,12 +59,12 @@ public class World {
         for (int i = 0; i < nbBlocs; i++) {
             Set<Object> actualDom = new HashSet<>(ensDom);
             actualDom.remove(i);
-            this.onB.put(i, new Variable("on_"+i, actualDom));
-            this.fixedB.put(i, new BooleanVariable("fixed_"+i));
+            this.onB.put(i, new Variable("on"+i, actualDom));
+            this.fixedB.put(i, new BooleanVariable("fixed"+i));
         }
 
-        for (int i = 1; i <= nbStacks; i++)
-            this.freeP.put(i, new BooleanVariable("free_"+i));
+        for (int i = -1; i >= -nbStacks; i--)
+            this.freeP.put(i, new BooleanVariable("free"+i));
     }
     
     public Set<Variable> getVariables() {
