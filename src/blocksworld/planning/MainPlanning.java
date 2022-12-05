@@ -1,7 +1,7 @@
 package blocksworld.planning;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,6 +12,11 @@ import bwmodel.BWState;
 import bwmodel.BWStateBuilder;
 import bwui.BWIntegerGUI;
 import planning.Action;
+import planning.BFSPlanner;
+import planning.BasicGoal;
+import planning.DFSPlanner;
+import planning.DijkstraPlanner;
+import planning.Planner;
 import representation.Variable;
 
 public class MainPlanning 
@@ -24,6 +29,7 @@ public class MainPlanning
         BlocksworldActionFactory actionFactory = new BlocksworldActionFactory(nbBlocks, nbStacks);
         Set<Action> actions = actionFactory.getActions();
 
+        /* Etat initial */
         ArrayList<Integer>[] stacks = new ArrayList[nbStacks];
         for(int i = 0; i < nbStacks; i++)
         {
@@ -37,50 +43,82 @@ public class MainPlanning
         StateBuilder stateBuilder = new StateBuilder(nbBlocks, nbStacks, stacks);
         Map<Variable, Object> instanciation = stateBuilder.getState();
 
-        System.out.println(instanciation);
+        /* ----------------------------------------------------------------------------------- */
 
-
-
-        /*
-
-        Map<Variable, Object> instanciation = new HashMap<Variable, Object>();
-
-        // Building state
-        int n = 5;
-        BWStateBuilder<Integer> builder = BWStateBuilder.makeBuilder(n);
-        for (int b = 0 ; b<n ; b++) 
+        //Etat final
+        ArrayList<Integer>[] stacksFinal = new ArrayList[nbStacks];
+        for(int i = 0; i < nbStacks; i++)
         {
-            /*
-            Variable onB = new Variable("on2", null); // get instance of Variable for " on_b "
-            int under = (int)instanciation.get(onB);
-            if (under >= 0) 
-            { 
-                
-                // if the value is a block ( as opposed to a stack )
-                builder.setOn (b+1 , b);
-            //}
+            stacksFinal[i] = new ArrayList<Integer>();
         }
 
-        BWState <Integer> state = builder.getState();
+        stacksFinal[0].add(0);
+        stacksFinal[1].add(2);
+        stacksFinal[1].add(1);
 
-        // Displaying
-        BWIntegerGUI gui = new BWIntegerGUI(n);
-        JFrame frame = new JFrame("title");
-        frame.add(gui.getComponent(state));
-        frame.pack();
-        frame.setVisible(true);
-    
+        stateBuilder = new StateBuilder(nbBlocks, nbStacks, stacksFinal);
+        Map<Variable, Object> instanciationFinal = stateBuilder.getState();
+
+        /* ----------------------------------------------------------------------------------- */
 
 
-        /*
-        try{
-            Thread.sleep(100000);
-        }
-        catch(InterruptedException e){
-            e.printStackTrace();
-        }
-        */
+        Planner planner;
+        long startTime;
+        long endTime;
+        List<Action> plan;
 
-        
+        //Planning : BFS
+
+        planner = new BFSPlanner(instanciation, actions, new BasicGoal(instanciationFinal));
+
+        startTime = System.currentTimeMillis();
+        plan = planner.plan();
+        endTime = System.currentTimeMillis();
+
+        System.out.println("BFS :");
+        System.out.println("temps d'execution : " + (endTime - startTime) + "ms");
+        System.out.println("Noeuds explorés : " + planner.getNbNodes());
+        System.out.println("Plan :");
+        System.out.println(plan);
+
+        System.out.println("");
+        System.out.println("");
+
+
+        //Planning : DFS
+
+        planner = new DFSPlanner(instanciation, actions, new BasicGoal(instanciationFinal));
+
+        startTime = System.currentTimeMillis();
+        plan = planner.plan();
+        endTime = System.currentTimeMillis();
+
+        System.out.println("DFS :");
+        System.out.println("temps d'execution : " + (endTime - startTime) + "ms");
+        System.out.println("Noeuds explorés : " + planner.getNbNodes());
+        System.out.println("Plan :");
+        System.out.println(plan);
+
+        System.out.println("");
+        System.out.println("");
+
+
+        //Planning : DFS
+
+        planner = new DijkstraPlanner(instanciation, actions, new BasicGoal(instanciationFinal));
+
+        startTime = System.currentTimeMillis();
+        plan = planner.plan();
+        endTime = System.currentTimeMillis();
+
+        System.out.println("Dijkstra :");
+        System.out.println("temps d'execution : " + (endTime - startTime) + "ms");
+        System.out.println("Noeuds explorés : " + planner.getNbNodes());
+        System.out.println("Plan :");
+        System.out.println(plan);
+
+        System.out.println("");
+        System.out.println("");
+
     }    
 }

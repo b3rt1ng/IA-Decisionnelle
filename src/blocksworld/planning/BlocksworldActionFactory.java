@@ -7,6 +7,7 @@ import java.util.Set;
 
 import planning.Action;
 import planning.BasicAction;
+import representation.BooleanVariable;
 import representation.Variable;
 
 public class BlocksworldActionFactory 
@@ -36,13 +37,13 @@ public class BlocksworldActionFactory
                         Map<Variable, Object> precondition = new HashMap<Variable, Object>();
 
                         precondition.put(new Variable("on"+i, null), j);
-                        precondition.put(new Variable("fixed"+i, null), false);
-                        precondition.put(new Variable("fixed"+k, null), false);
+                        precondition.put(new BooleanVariable("fixed"+i), false);
+                        precondition.put(new BooleanVariable("fixed"+k), false);
 
                         Map<Variable, Object> effect = new HashMap<Variable, Object>();
                         effect.put(new Variable("on"+i, null), k);
-                        effect.put(new Variable("fixed"+j, null), false);
-                        effect.put(new Variable("fixed"+k, null), true);
+                        effect.put(new BooleanVariable("fixed"+j), false);
+                        effect.put(new BooleanVariable("fixed"+k), true);
 
                         setActions.add(new BasicAction(precondition, effect, 1));
                     }
@@ -56,13 +57,13 @@ public class BlocksworldActionFactory
                         Map<Variable, Object> precondition = new HashMap<Variable, Object>();
 
                         precondition.put(new Variable("on"+i, null), j);
-                        precondition.put(new Variable("fixed"+i, null), false);
-                        precondition.put(new Variable("free"+k, null), true);
+                        precondition.put(new BooleanVariable("fixed"+i), false);
+                        precondition.put(new BooleanVariable("free"+k), true);
 
                         Map<Variable, Object> effect = new HashMap<Variable, Object>();
                         effect.put(new Variable("on"+i, null), k);
-                        effect.put(new Variable("fixed"+j, null), false);
-                        effect.put(new Variable("free"+k, null), false);
+                        effect.put(new BooleanVariable("fixed"+j), false);
+                        effect.put(new BooleanVariable("free"+k), false);
 
                         setActions.add(new BasicAction(precondition, effect, 1));
                     }
@@ -79,13 +80,13 @@ public class BlocksworldActionFactory
                         Map<Variable, Object> precondition = new HashMap<Variable, Object>();
 
                         precondition.put(new Variable("on"+i, null), j);
-                        precondition.put(new Variable("fixed"+i, null), false);
-                        precondition.put(new Variable("fixed"+k, null), false);
+                        precondition.put(new BooleanVariable("fixed"+i), false);
+                        precondition.put(new BooleanVariable("fixed"+k), false);
 
                         Map<Variable, Object> effect = new HashMap<Variable, Object>();
                         effect.put(new Variable("on"+i, null), k);
-                        effect.put(new Variable("free"+j, null), true);
-                        effect.put(new Variable("fixed"+k, null), true);
+                        effect.put(new BooleanVariable("free"+j), true);
+                        effect.put(new BooleanVariable("fixed"+k), true);
 
                         setActions.add(new BasicAction(precondition, effect, 1));
                     }
@@ -99,13 +100,13 @@ public class BlocksworldActionFactory
                         Map<Variable, Object> precondition = new HashMap<Variable, Object>();
 
                         precondition.put(new Variable("on"+i, null), j);
-                        precondition.put(new Variable("fixed"+i, null), false);
-                        precondition.put(new Variable("free"+k, null), true);
+                        precondition.put(new BooleanVariable("fixed"+i), false);
+                        precondition.put(new BooleanVariable("free"+k), true);
 
                         Map<Variable, Object> effect = new HashMap<Variable, Object>();
                         effect.put(new Variable("on"+i, null), k);
-                        effect.put(new Variable("free"+j, null), true);
-                        effect.put(new Variable("free"+k, null), false);
+                        effect.put(new BooleanVariable("free"+j), true);
+                        effect.put(new BooleanVariable("free"+k), false);
 
                         setActions.add(new BasicAction(precondition, effect, 1));
                     }
