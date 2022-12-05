@@ -61,7 +61,7 @@ public class DataminingOnBlockWorld {
         Set<AssociationRule> rules = miner.extract(minFreq, minConf);
 
         System.out.println("found " + rules.size() + " rules: ");
-        rules.forEach(r -> System.out.println("\t-> " + r));
+        rules.forEach(r -> System.out.println("\t-> " + r + " with " + r.getConfidence()*100 + "% confidence."));
 
     }
 
