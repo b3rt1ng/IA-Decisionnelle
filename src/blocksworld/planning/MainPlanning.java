@@ -11,6 +11,7 @@ import blocksworld.representation.StateBuilder;
 import bwmodel.BWState;
 import bwmodel.BWStateBuilder;
 import bwui.BWIntegerGUI;
+import planning.AStarPlanner;
 import planning.Action;
 import planning.BFSPlanner;
 import planning.BasicGoal;
@@ -38,9 +39,10 @@ public class MainPlanning
             stacks[i] = new ArrayList<Integer>();
         }
 
-        stacks[0].add(0);
-        stacks[0].add(1);
-        stacks[0].add(2);
+        for(int i = 0; i < nbBlocks; i++)
+        {
+            stacks[0].add(i);
+        }
 
         StateBuilder stateBuilder = new StateBuilder(nbBlocks, nbStacks, stacks);
         Map<Variable, Object> instanciation = stateBuilder.getState();
@@ -48,17 +50,7 @@ public class MainPlanning
         /* ----------------------------------------------------------------------------------- */
 
         //Etat final
-        ArrayList<Integer>[] stacksFinal = new ArrayList[nbStacks];
-        for(int i = 0; i < nbStacks; i++)
-        {
-            stacksFinal[i] = new ArrayList<Integer>();
-        }
-
-        stacksFinal[0].add(0);
-        stacksFinal[1].add(2);
-        stacksFinal[1].add(1);
-
-        stateBuilder = new StateBuilder(nbBlocks, nbStacks, stacksFinal);
+        stateBuilder.stateShuffler(20);
         Map<Variable, Object> instanciationFinal = stateBuilder.getState();
 
         /* ----------------------------------------------------------------------------------- */
@@ -105,7 +97,7 @@ public class MainPlanning
         System.out.println("");
 
 
-        //Planning : DFS
+        //Planning : Dijkstra
 
         planner = new DijkstraPlanner(instanciation, actions, new BasicGoal(instanciationFinal));
 
@@ -114,6 +106,42 @@ public class MainPlanning
         endTime = System.currentTimeMillis();
 
         System.out.println("Dijkstra :");
+        System.out.println("temps d'execution : " + (endTime - startTime) + "ms");
+        System.out.println("Noeuds explorés : " + planner.getNbNodes());
+        System.out.println("Plan :");
+        System.out.println(plan);
+
+        System.out.println("");
+        System.out.println("");
+
+
+        //Planning : A* (heuristique : nombre de blocs mal placés)
+
+        planner = new AStarPlanner(instanciation, actions, new BasicGoal(instanciationFinal), new DifferentBlockOnHeuristic(instanciationFinal));
+
+        startTime = System.currentTimeMillis();
+        plan = planner.plan();
+        endTime = System.currentTimeMillis();
+
+        System.out.println("A* (heuristique : nombre de blocs mal placés) :");
+        System.out.println("temps d'execution : " + (endTime - startTime) + "ms");
+        System.out.println("Noeuds explorés : " + planner.getNbNodes());
+        System.out.println("Plan :");
+        System.out.println(plan);
+
+        System.out.println("");
+        System.out.println("");
+
+
+        //Planning : A* (heuristique : nombre de blocs sur la mauvaise pile)
+
+        planner = new AStarPlanner(instanciation, actions, new BasicGoal(instanciationFinal), new NbBlockOnBadStackHeuristic(instanciationFinal));
+
+        startTime = System.currentTimeMillis();
+        plan = planner.plan();
+        endTime = System.currentTimeMillis();
+
+        System.out.println("A* (heuristique : nombre de blocs sur la mauvaise pile) :");
         System.out.println("temps d'execution : " + (endTime - startTime) + "ms");
         System.out.println("Noeuds explorés : " + planner.getNbNodes());
         System.out.println("Plan :");
