@@ -2,6 +2,9 @@ package blocksworld.representation;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import blocksworld.datamining.Tuple;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -19,7 +22,7 @@ public class WorldOfBooleanVariables extends World {
     /**
      * The onB booleanized
      */
-    protected Map<Integer, BooleanVariable> booleanOnB;
+    protected Map<Tuple, BooleanVariable> booleanOnB;
 
     /**
      * Constructor of the class WorldOfBooleanVariables
@@ -36,11 +39,9 @@ public class WorldOfBooleanVariables extends World {
             for (int j = -nbStacks; j < nbBlocks; j++) {
                 if (i != j) {
                     if (j < 0) {
-                        BooleanVariable var = new BooleanVariable("onB(" + i + " P " + j + ")");
-                        this.booleanOnB.put(i * nbBlocks + j, var);
+                        this.booleanOnB.put(new Tuple(i, j), new BooleanVariable("onG(" + i + " P " + j + ")"));
                     } else {
-                        BooleanVariable var = new BooleanVariable("onB(" + i + " B " + j + ")");
-                        this.booleanOnB.put(i * nbBlocks + j, var);
+                        this.booleanOnB.put(new Tuple(i, j), new BooleanVariable("onB(" + i + " P " + j + ")"));
                     }
                 }
             }
@@ -63,12 +64,17 @@ public class WorldOfBooleanVariables extends World {
 
         for (int i = 0; i < state.size(); i++) {
             if (state.get(i).isEmpty()) {
-                instance.add(world.getFreeP().get(i));
+                instance.add(world.getFreeP().get(-(i+1)));
             } else {
-                instance.add(world.getBooleanOnB().get(state.get(i).get(0) * nbBlocks + -i - 1));
+                BooleanVariable block = world.getBooleanOnB().get(new Tuple(state.get(i).get(0), -(i+1)));
+                instance.add(block);
                 if (state.get(i).size() > 1) {
-                    for (int j = 0; j < state.get(i).size() - 1; j++) {
-                        instance.add(world.getBooleanOnB().get(state.get(i).get(j + 1) * nbBlocks + state.get(i).get(j)));
+                    instance.add(world.getFixedB().get(state.get(i).get(0)));
+                    for (int j = 1; j < state.get(i).size(); j++) {
+                        instance.add(world.getBooleanOnB().get(new Tuple(state.get(i).get(j), state.get(i).get(j-1))));
+                        if (j < state.get(i).size() - 1) {
+                            instance.add(world.getFixedB().get(state.get(i).get(j)));
+                        }
                     }
                 }
             }
@@ -94,7 +100,7 @@ public class WorldOfBooleanVariables extends World {
      * 
      * @return the booleanOnB
      */
-    public Map<Integer ,BooleanVariable> getBooleanOnB() {
+    public Map<Tuple ,BooleanVariable> getBooleanOnB() {
         return this.booleanOnB;
     }
 
