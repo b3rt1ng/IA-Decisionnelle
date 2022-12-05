@@ -33,6 +33,12 @@
         </java>
     </target>
 
+    <target name="MainCsp" description="Execution de la classe executable MainCsp" depends="compile">
+        <java classname="blocksworld.csp.MainCsp" fork="false">
+            <classpath refid="projet.classpath"/>
+        </java>
+    </target>
+
     <target name="doc">
         <delete dir="${projet.doc.dir}" />
         <javadoc sourcepath="${projet.src.dir}" destdir="doc" access="private">
