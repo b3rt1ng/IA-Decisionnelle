@@ -26,7 +26,6 @@ public class MainCsp
         int nbBlocks = 10;
         int nbStacks = 10;
 
-        World world = new World(nbBlocks, nbStacks);
         WorldWithRegularConstraints worldWithRegularConstraints = new WorldWithRegularConstraints(nbBlocks, nbStacks);
 
         /* -------------------------------------------------------------------------------------------------------------- */
@@ -38,7 +37,7 @@ public class MainCsp
     
         //Backtracking
 
-        solver = new BacktrackSolver(world.getVariables(), worldWithRegularConstraints.getRegularConstraints());
+        solver = new BacktrackSolver(worldWithRegularConstraints.getVariables(), worldWithRegularConstraints.getRegularConstraints());
         startTime = System.currentTimeMillis();
         solution = solver.solve();
         endTime = System.currentTimeMillis();
@@ -56,7 +55,7 @@ public class MainCsp
     
         //MACSolver
 
-        solver = new MACSolver(world.getVariables(), worldWithRegularConstraints.getRegularConstraints());
+        solver = new MACSolver(worldWithRegularConstraints.getVariables(), worldWithRegularConstraints.getRegularConstraints());
         startTime = System.currentTimeMillis();
         solution = solver.solve();
         endTime = System.currentTimeMillis();
@@ -87,7 +86,7 @@ public class MainCsp
         {
             for(int j = 0; j < tabValueHeuristic.length; j++)
             {
-                solver = new HeuristicMACSolver(world.getVariables(), worldWithRegularConstraints.getRegularConstraints(), tabVariableHeuristic[i], tabValueHeuristic[j]);
+                solver = new HeuristicMACSolver(worldWithRegularConstraints.getVariables(), worldWithRegularConstraints.getRegularConstraints(), tabVariableHeuristic[i], tabValueHeuristic[j]);
                 startTime = System.currentTimeMillis();
                 solution = solver.solve();
                 endTime = System.currentTimeMillis();
