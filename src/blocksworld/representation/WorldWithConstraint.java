@@ -49,8 +49,7 @@ public class WorldWithConstraint extends World {
             for (Object value : onBlock.getDomain()) {
                 Integer i = (Integer) value;
                 Set<Object> s1 = Set.of(i);
-                
-                Set<Object> s2 = new HashSet<>();
+                Set<Object> s2 = new HashSet<>(0);
                 Variable v;
                 if (i < 0) {
                     v = this.freeP.get(i);
