@@ -5,16 +5,10 @@ import java.util.Random;
 
 import blocksworld.representation.World;
 import blocksworld.representation.WorldWithRegularConstraints;
-import csp.AbstractSolver;
-import csp.BacktrackSolver;
-import csp.DomainSizeVariableHeuristic;
-import csp.HeuristicMACSolver;
-import csp.MACSolver;
-import csp.NbConstraintsVariableHeuristic;
-import csp.RandomValueHeuristic;
-import csp.ValueHeuristic;
-import csp.VariableHeuristic;
+
 import representation.Variable;
+
+import csp.*;
 
 public class MainCsp 
 {

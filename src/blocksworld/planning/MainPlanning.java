@@ -8,17 +8,14 @@ import java.util.Set;
 import javax.swing.JFrame;
 
 import blocksworld.representation.StateBuilder;
+
 import bwmodel.BWState;
 import bwmodel.BWStateBuilder;
 import bwui.BWIntegerGUI;
-import planning.AStarPlanner;
-import planning.Action;
-import planning.BFSPlanner;
-import planning.BasicGoal;
-import planning.DFSPlanner;
-import planning.DijkstraPlanner;
-import planning.Planner;
+
 import representation.Variable;
+
+import planning.*;
 
 public class MainPlanning 
 {
