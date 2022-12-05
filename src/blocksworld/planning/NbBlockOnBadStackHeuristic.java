@@ -5,10 +5,21 @@ import java.util.Map;
 import planning.Heuristic;
 import representation.Variable;
 
+/**
+ * Heuristique qui compte le nombre de blocs placés sur la mauvaise pile.
+ */
 public class NbBlockOnBadStackHeuristic implements Heuristic
 {
+    /**
+     * Etat but.
+     */
     protected Map<Variable, Object> goal;
 
+    /**
+     * Constructeur.
+     * 
+     * @param goal etat but.
+     */
     public NbBlockOnBadStackHeuristic(Map<Variable, Object> goal)
     {
         this.goal = goal;
@@ -39,8 +50,6 @@ public class NbBlockOnBadStackHeuristic implements Heuristic
 
                 }
                     
-                    
-
         return nbBlocks;    
     }
 }
